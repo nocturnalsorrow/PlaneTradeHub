@@ -3,15 +3,10 @@ package com.dm.planetradehub.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Collection;
-import java.util.Objects;
+import java.util.Date;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+@Data
 public class Aircraft {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -31,7 +26,7 @@ public class Aircraft {
     private int run;
     @Basic
     @Column(name = "year")
-    private Object year;
+    private Date year;
     @Basic
     @Column(name = "color")
     private String color;

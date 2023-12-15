@@ -2,16 +2,12 @@ package com.dm.planetradehub.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.mapping.ToOne;
 
-import java.util.Objects;
+import java.util.Date;
+
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+@Data
 public class Advertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -38,4 +34,7 @@ public class Advertisement {
     @Basic
     @Column(name = "description")
     private String description;
+    @Basic
+    @Column(name = "publication_date")
+    private Date publicationDate;
 }
