@@ -8,6 +8,8 @@ import java.util.Date;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude = {"user", "aircraft"})
+@ToString(exclude = {"user", "aircraft"})
 public class Advertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
