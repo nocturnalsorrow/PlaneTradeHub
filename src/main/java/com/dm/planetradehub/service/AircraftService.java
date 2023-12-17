@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface AircraftService {
     List<Aircraft> getAllAircrafts();
 
-    List<Aircraft> findAircraftsByParameters(String type, String brand, String model);
+    List<Aircraft> findAircraftsByParameters(Aircraft aircraft);
 
     Optional<Aircraft> getAircraftById(Long id);
 

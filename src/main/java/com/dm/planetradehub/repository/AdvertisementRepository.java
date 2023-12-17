@@ -10,4 +10,7 @@ import java.util.List;
 @Transactional
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
+//    @Query(nativeQuery = true, value = "select * from advertisement, aircraft where ")
+//    List<Advertisement> findAdvertisementByParameters();
+
 }

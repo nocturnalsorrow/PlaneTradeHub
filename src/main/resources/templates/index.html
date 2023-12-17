@@ -1,10 +1,50 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+<form th:method="POST" th:action="@{/}">
+    <div class="messages"></div>
+    <div class="controls">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_login"><span th:text="Type"/></label>
+                    <input id="form_login" type="text" th:field="${aircraft.type}" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_password"><span th:text="Brand"/></label>
+                    <input id="form_password" type="text" th:field="${aircraft.brand}"
+                           class="form-control js-name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_name"><span th:text="Model"></span></label>
+                    <input id="form_name" type="text" th:field="${aircraft.model}" class="form-control js-name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary" th:text="Submit"></button>
+            </div>
+        </div>
+    </div>
+</form>
+
 <th:block th:each="aircraft:${aircrafts}">
 <h2 th:text="${aircraft}"></h2>
 </th:block>

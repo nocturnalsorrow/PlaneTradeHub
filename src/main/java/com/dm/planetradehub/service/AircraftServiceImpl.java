@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AircraftServiceImpl implements AircraftService{
+public class    AircraftServiceImpl implements AircraftService{
 
     private final AircraftRepository aircraftRepository;
 
@@ -22,8 +22,8 @@ public class AircraftServiceImpl implements AircraftService{
     }
 
     @Override
-    public List<Aircraft> findAircraftsByParameters(String type, String brand, String model){
-        return aircraftRepository.findAircraftsByParameters(type, brand, model);
+    public List<Aircraft> findAircraftsByParameters(Aircraft aircraft){
+        return aircraftRepository.findAircraftsByParameters(aircraft.getType(), aircraft.getBrand(), aircraft.getModel());
     }
 
     @Override
