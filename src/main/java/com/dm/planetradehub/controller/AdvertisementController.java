@@ -1,8 +1,6 @@
 package com.dm.planetradehub.controller;
 
-import com.dm.planetradehub.entity.Aircraft;
-import com.dm.planetradehub.repository.AdvertisementRepository;
-import com.dm.planetradehub.repository.AircraftRepository;
+import com.dm.planetradehub.entity.Advertisement;
 import com.dm.planetradehub.service.AdvertisementService;
 import com.dm.planetradehub.service.AircraftService;
 import org.springframework.stereotype.Controller;
@@ -23,16 +21,16 @@ public class AdvertisementController {
 
     @GetMapping("/")
     public String homePage(Model model){
-        Aircraft aircraft = new Aircraft();
-        model.addAttribute("aircraft", aircraft);
-        model.addAttribute("aircrafts", aircraftService.getAllAircrafts());
+        Advertisement advertisement = new Advertisement();
+        model.addAttribute("advertisement", advertisement);
+        model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
 
         return "index";
     }
 
     @PostMapping("/")
-    public String aircrafts(@ModelAttribute Aircraft aircraft, Model model){
-        model.addAttribute("aircrafts", aircraftService.findAircraftsByParameters(aircraft));
+    public String advertisements(@ModelAttribute Advertisement advertisement, Model model){
+        model.addAttribute("advertisements", advertisementService.findAdvertisementsByParameters(advertisement));
 
         return "index";
     }

@@ -17,14 +17,14 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_login"><span th:text="Type"/></label>
-                    <input id="form_login" type="text" th:field="${aircraft.type}" class="form-control">
+                    <label for="type"><span th:text="Type"></span></label>
+                    <input id="type" type="text" th:field="${advertisement.aircraft.type}" class="form-control">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_password"><span th:text="Brand"/></label>
-                    <input id="form_password" type="text" th:field="${aircraft.brand}"
+                    <label for="brand"><span th:text="Brand"></span></label>
+                    <input id="brand" type="text" th:field="${advertisement.aircraft.brand}"
                            class="form-control js-name">
                 </div>
             </div>
@@ -32,8 +32,22 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="form_name"><span th:text="Model"></span></label>
-                    <input id="form_name" type="text" th:field="${aircraft.model}" class="form-control js-name">
+                    <label for="model"><span th:text="Model"></span></label>
+                    <input id="model" type="text" th:field="${advertisement.aircraft.model}" class="form-control js-name">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="year"><span th:text="Year"></span></label>
+                    <input id="year" type="text" th:field="${advertisement.aircraft.year}" class="form-control js-name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="price"><span th:text="Price"></span></label>
+                    <input id="price" type="text" th:field="${advertisement.price}" class="form-control js-name">
                 </div>
             </div>
         </div>
@@ -45,8 +59,8 @@
     </div>
 </form>
 
-<th:block th:each="aircraft:${aircrafts}">
-<h2 th:text="${aircraft}"></h2>
+<th:block th:each="advertisement:${advertisements}">
+<h2 th:text="${advertisement}"></h2>
 </th:block>
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.dm.planetradehub.entity.Advertisement;
 import com.dm.planetradehub.repository.AdvertisementRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Year;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,15 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     @Override
     public List<Advertisement> getAllAdvertisements() {
         return advertisementRepository.findAll();
+    }
+
+    @Override
+    public List<Advertisement> findAdvertisementsByParameters(Advertisement advertisement){
+        return advertisementRepository.findAdvertisementsByParameters(advertisement.getAircraft().getType(),
+                advertisement.getAircraft().getBrand(),
+                advertisement.getAircraft().getModel(),
+                advertisement.getAircraft().getYear(),
+                advertisement.getPrice());
     }
 
     @Override

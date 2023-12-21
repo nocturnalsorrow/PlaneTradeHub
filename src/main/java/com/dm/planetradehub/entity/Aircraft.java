@@ -27,7 +27,7 @@ public class Aircraft {
     private int run;
     @Basic
     @Column(name = "year")
-    private Date year;
+    private int year;
     @Basic
     @Column(name = "color")
     private String color;
