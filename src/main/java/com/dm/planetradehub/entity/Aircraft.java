@@ -3,6 +3,7 @@ package com.dm.planetradehub.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.Year;
 import java.util.Date;
 
 @Entity
