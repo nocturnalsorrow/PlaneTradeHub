@@ -1,10 +1,7 @@
 package com.dm.planetradehub.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.time.Year;
-import java.util.Date;
+import lombok.Data;
 
 @Entity
 @Data
@@ -12,16 +9,16 @@ public class Aircraft {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
-    private Long id;
-    @Basic
-    @Column(name = "type")
-    private String type;
-    @Basic
-    @Column(name = "brand")
-    private String brand;
-    @Basic
-    @Column(name = "model")
-    private String model;
+    private long id;
+    @OneToOne
+    @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
+    private Type type;
+    @OneToOne
+    @JoinColumn(name = "manufacturer_id", referencedColumnName = "id", nullable = false)
+    private Manufacturer manufacturer;
+    @OneToOne
+    @JoinColumn(name = "model_id", referencedColumnName = "id", nullable = false)
+    private Model model;
     @Basic
     @Column(name = "run")
     private int run;

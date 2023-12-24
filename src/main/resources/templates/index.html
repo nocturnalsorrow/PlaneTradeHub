@@ -22,11 +22,13 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="form-group">
-                    <label for="brand"><span th:text="Brand"></span></label>
-                    <input id="brand" type="text" th:field="${advertisement.aircraft.brand}"
-                           class="form-control js-name">
-                </div>
+                <label for="manufacturer"><span th:text="Brand"></span></label>
+                <select class="form-control" th:field="${advertisement.aircraft.manufacturer}" id="manufacturer">
+                    <option hidden th:value="''" th:text="''" selected></option>
+                    <th:block th:each="manufacturer:${manufacturer}">
+                        <option th:value="${manufacturer}" th:text="${manufacturer}"></option>
+                    </th:block>
+                </select>
             </div>
         </div>
         <div class="row">
