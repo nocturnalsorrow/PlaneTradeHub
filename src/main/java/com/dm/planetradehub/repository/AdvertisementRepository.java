@@ -20,6 +20,5 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     List<Advertisement> findAdvertisementsByParameters(@Param("type") String type,
                                                        @Param("manufacturer") String manufacturer,
                                                        @Param("model") String model,
-                                                       @Param("year") int year,
-                                                       @Param("price") int price);
+                                                       @Param("year") int year);
 }

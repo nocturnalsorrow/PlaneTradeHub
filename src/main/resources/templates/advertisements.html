@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advertisements</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<header th:replace="~{/fragments/header :: header}"></header>
+
+<div class="row">
+    <strong>
+        <th:block th:each="advertisement:${advertisements}">
+            <h4 class="front-weight-bold blue-text">
+                <a th:href="@{/{manufacturer}{model}{year}(manufacturer=${advertisement.aircraft.manufacturer.name}, model=${advertisement.aircraft.model.name}, year=${advertisement.aircraft.year})}">
+                    <strong><span
+                            th:text="${advertisement.aircraft.manufacturer.name} + ${advertisement.aircraft.model.name} + ${advertisement.aircraft.year}"></span></strong>
+                </a>
+            </h4>
+            <span th:text="${advertisement.price} + '$'"/> <br/>
+            <span th:text="${advertisement.publicationDate}"/> <br/>
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+        </th:block>
+    </strong>
+</div>
+<!--    <th:block th:each="advertisement:${advertisements}">-->
+<!--        <h2 th:text="${advertisement}"></h2>-->
+<!--    </th:block>-->
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
+</body>
+</html>

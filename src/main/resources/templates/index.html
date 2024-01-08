@@ -46,14 +46,6 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="price"><span th:text="Price"></span></label>
-                    <input id="price" type="text" th:field="${advertisement.price}" class="form-control js-name">
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-md-12">
                 <button type="submit" class="btn btn-primary" th:text="Submit"></button>
             </div>
@@ -64,5 +56,8 @@
 <th:block th:each="advertisement:${advertisements}">
 <h2 th:text="${advertisement}"></h2>
 </th:block>
+
+<footer th:replace="~{/fragments/footer :: footer}"></footer>
+
 </body>
 </html>
