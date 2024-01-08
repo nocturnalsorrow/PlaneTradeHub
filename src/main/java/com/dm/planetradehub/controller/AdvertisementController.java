@@ -21,7 +21,7 @@ public class AdvertisementController {
     }
 
     @GetMapping("/")
-    public String homePage(Model model){
+    public String homePage(Model model) {
         Advertisement advertisement = new Advertisement();
         model.addAttribute("advertisement", advertisement);
         model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
@@ -29,10 +29,17 @@ public class AdvertisementController {
         return "index";
     }
 
-    @PostMapping("/")
-    public String advertisements(@ModelAttribute Advertisement advertisement, Model model){
+    @PostMapping("/advertisements")
+    public String advertisements(@ModelAttribute Advertisement advertisement, Model model) {
         model.addAttribute("advertisements", advertisementService.findAdvertisementsByParameters(advertisement));
 
-        return "index";
+        return "advertisements";
+    }
+
+    @GetMapping("/{manufacturer}{model}{year}")
+    public String details(@PathVariable("manufacturer") String manufacturer, @PathVariable("model") String advert_model, @PathVariable("year") String year, Model model) {
+        model.addAttribute("advertisement", advertisementService.getAdvertisementById(9L));
+
+        return "details";
     }
 }

@@ -25,8 +25,7 @@ public class AdvertisementServiceImpl implements AdvertisementService{
         return advertisementRepository.findAdvertisementsByParameters(advertisement.getAircraft().getType().getName(),
                 advertisement.getAircraft().getManufacturer().getName(),
                 advertisement.getAircraft().getModel().getName(),
-                advertisement.getAircraft().getYear(),
-                advertisement.getPrice());
+                advertisement.getAircraft().getYear());
     }
 
     @Override

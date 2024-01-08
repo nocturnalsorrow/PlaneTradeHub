@@ -11,31 +11,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-<form th:method="POST" th:action="@{/}">
+
+<header th:replace="~{/fragments/header :: header}"></header>
+
+<form th:method="POST" th:action="@{/advertisements}">
     <div class="messages"></div>
     <div class="controls">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="type"><span th:text="Type"></span></label>
-                    <input id="type" type="text" th:field="${advertisement.aircraft.type}" class="form-control">
+                    <input id="type" type="text" th:field="${advertisement.aircraft.type.name}" class="form-control">
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="manufacturer"><span th:text="Brand"></span></label>
-                <select class="form-control" th:field="${advertisement.aircraft.manufacturer}" id="manufacturer">
-                    <option hidden th:value="''" th:text="''" selected></option>
-                    <th:block th:each="manufacturer:${manufacturer}">
-                        <option th:value="${manufacturer}" th:text="${manufacturer}"></option>
-                    </th:block>
-                </select>
+                <input id="manufacturer" type="text" th:field="${advertisement.aircraft.manufacturer.name}"
+                       class="form-control js-name">
+
+<!--                <label for="manufacturer"><span th:text="Brand"></span></label>-->
+<!--                <select class="form-control" th:field="${advertisement.aircraft.manufacturer.name}" id="manufacturer">-->
+<!--                    <option hidden th:value="''" th:text="''" selected></option>-->
+<!--                    <th:block th:each="manufacturer:${manufacturer}">-->
+<!--                        <option th:value="${manufacturer}" th:text="${manufacturer}"></option>-->
+<!--                    </th:block>-->
+<!--                </select>-->
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="model"><span th:text="Model"></span></label>
-                    <input id="model" type="text" th:field="${advertisement.aircraft.model}" class="form-control js-name">
+                    <input id="model" type="text" th:field="${advertisement.aircraft.model.name}" class="form-control js-name">
                 </div>
             </div>
             <div class="col-md-6">
