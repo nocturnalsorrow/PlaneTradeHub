@@ -9,7 +9,7 @@ public interface AdvertisementService {
 
     List<Advertisement> findAdvertisementsByParameters(Advertisement advertisement);
 
-    Optional<Advertisement> getAdvertisementById(Long id);
+    Advertisement getAdvertisementById(Long id);
 
     Advertisement saveAdvertisement(Advertisement advertisement);
 

@@ -17,7 +17,7 @@
     <strong>
         <th:block th:each="advertisement:${advertisements}">
             <h4 class="front-weight-bold blue-text">
-                <a th:href="@{/{manufacturer}{model}{year}(manufacturer=${advertisement.aircraft.manufacturer.name}, model=${advertisement.aircraft.model.name}, year=${advertisement.aircraft.year})}">
+                <a th:href="@{/{id}(id=${advertisement.id})}">
                     <strong><span
                             th:text="${advertisement.aircraft.manufacturer.name} + ${advertisement.aircraft.model.name} + ${advertisement.aircraft.year}"></span></strong>
                 </a>

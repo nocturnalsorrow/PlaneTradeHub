@@ -16,14 +16,13 @@
 <div class="row">
     <strong>
         <span th:text="${advertisement.aircraft.manufacturer.name}"/> <span th:text="${advertisement.aircraft.model.name}"/> <span th:text="${advertisement.aircraft.year}"/><br/>
-        PUCTURE
+        PUCTURE<br/>
         <span th:text="${advertisement.price} + '$'"/> <br/>
-        <span th:text="${advertisement.run}"/> <br/>
-        <span th:text="${advertisement.color}"/> <br/>
+        <span th:text="${advertisement.aircraft.run}"/> <br/>
+        <span th:text="${advertisement.aircraft.color}"/> <br/>
         <span th:text="${advertisement.region}"/> <span th:text="${advertisement.city}"/> <br/>
         <span th:text="${advertisement.publicationDate}"/> <br/>
     </strong>
-    <span th:text="${advertisement.description}"/> <br/>
 </div>
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>

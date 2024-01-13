@@ -29,9 +29,7 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     }
 
     @Override
-    public Optional<Advertisement> getAdvertisementById(Long id) {
-        return advertisementRepository.findById(id);
-    }
+    public Advertisement getAdvertisementById(Long id) { return advertisementRepository.findAdvertisementById(id); }
 
     @Override
     public Advertisement saveAdvertisement(Advertisement advertisement) {

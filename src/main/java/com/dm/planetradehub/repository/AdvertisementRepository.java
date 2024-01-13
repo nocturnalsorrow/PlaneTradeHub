@@ -21,4 +21,6 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
                                                        @Param("manufacturer") String manufacturer,
                                                        @Param("model") String model,
                                                        @Param("year") int year);
+
+    Advertisement findAdvertisementById(Long id);
 }

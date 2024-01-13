@@ -36,9 +36,9 @@ public class AdvertisementController {
         return "advertisements";
     }
 
-    @GetMapping("/{manufacturer}{model}{year}")
-    public String details(@PathVariable("manufacturer") String manufacturer, @PathVariable("model") String advert_model, @PathVariable("year") String year, Model model) {
-        model.addAttribute("advertisement", advertisementService.getAdvertisementById(9L));
+    @GetMapping("/{id}")
+    public String details(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("advertisement", advertisementService.getAdvertisementById(id));
 
         return "details";
     }
