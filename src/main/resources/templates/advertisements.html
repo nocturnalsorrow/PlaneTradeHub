@@ -13,33 +13,25 @@
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="row">
-                <strong>
-                    <th:block th:each="advertisement:${advertisements}">
-                        <h4 class="front-weight-bold blue-text">
-                            <a th:href="@{/{id}(id=${advertisement.id})}">
-                                <strong>
-                                    <span th:text="${advertisement.aircraft.manufacturer.name}"/> <span
-                                        th:text="${advertisement.aircraft.model.name}"/> <span
-                                        th:text="${advertisement.aircraft.year}"/>
-                                </strong>
-                            </a>
-                        </h4>
-                        <span th:text="Run"/> : <span th:text="${advertisement.aircraft.run}"/> <br/>
-                        <span th:text="Price"/> : <span th:text="${advertisement.price} + '$'"/> <br/>
-                        <span th:text="City"/> : <span th:text="${advertisement.city}"/> <br/>
-                        <span th:text="Placed"/> : <span th:text="${advertisement.publicationDate}"/> <br/>
-                        &nbsp;&nbsp;
-                        &nbsp;&nbsp;
-                    </th:block>
-                </strong>
-            </div>
-        </div>
-    </div>
+<div class="row">
+    <strong>
+        <th:block th:each="advertisement:${advertisements}">
+            <h4 class="front-weight-bold blue-text">
+                <a th:href="@{/{id}(id=${advertisement.id})}">
+                    <strong><span
+                            th:text="${advertisement.aircraft.manufacturer.name} + ${advertisement.aircraft.model.name} + ${advertisement.aircraft.year}"></span></strong>
+                </a>
+            </h4>
+            <span th:text="${advertisement.price} + '$'"/> <br/>
+            <span th:text="${advertisement.publicationDate}"/> <br/>
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+        </th:block>
+    </strong>
 </div>
+<!--    <th:block th:each="advertisement:${advertisements}">-->
+<!--        <h2 th:text="${advertisement}"></h2>-->
+<!--    </th:block>-->
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>
 </html>

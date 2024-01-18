@@ -15,9 +15,10 @@ public class AdvertisementController {
     private final AdvertisementService advertisementService;
     private final AircraftService aircraftService;
 
-    public AdvertisementController(AdvertisementService advertisementService, AircraftService aircraftService) {
+    public AdvertisementController(AdvertisementService advertisementService, AircraftService aircraftService, ManufacturerRepository manufacturerRepository) {
         this.advertisementService = advertisementService;
         this.aircraftService = aircraftService;
+        this.manufacturerRepository = manufacturerRepository;
     }
 
     @GetMapping("/")
