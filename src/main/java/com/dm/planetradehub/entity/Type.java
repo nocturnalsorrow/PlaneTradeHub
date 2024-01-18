@@ -18,4 +18,6 @@ public class Type {
     private String name;
     @OneToOne(mappedBy = "type")
     private Aircraft aircraft;
+    @OneToMany(mappedBy = "type")
+    private List<Manufacturer> manufacturer;
 }

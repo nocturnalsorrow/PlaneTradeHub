@@ -1,6 +1,7 @@
 package com.dm.planetradehub.controller;
 
 import com.dm.planetradehub.entity.Advertisement;
+import com.dm.planetradehub.repository.ManufacturerRepository;
 import com.dm.planetradehub.service.AdvertisementService;
 import com.dm.planetradehub.service.AircraftService;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AdvertisementController {
     private final AdvertisementService advertisementService;
     private final AircraftService aircraftService;
+    private final ManufacturerRepository manufacturerRepository;
 
     public AdvertisementController(AdvertisementService advertisementService, AircraftService aircraftService, ManufacturerRepository manufacturerRepository) {
         this.advertisementService = advertisementService;
@@ -23,8 +25,8 @@ public class AdvertisementController {
 
     @GetMapping("/")
     public String homePage(Model model) {
-        Advertisement advertisement = new Advertisement();
-        model.addAttribute("advertisement", advertisement);
+        model.addAttribute("advertisement", new Advertisement());
+        model.addAttribute("manufacturers", manufacturerRepository.findAll());
         model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
 
         return "index";

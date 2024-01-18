@@ -15,6 +15,9 @@ public class Model {
     @Basic
     @Column(name = "name")
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id", referencedColumnName = "id", nullable = false)
+    private Manufacturer manufacturer;
     @OneToOne(mappedBy = "model")
     private Aircraft aircraft;
 
