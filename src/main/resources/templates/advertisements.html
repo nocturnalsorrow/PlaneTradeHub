@@ -14,6 +14,36 @@
 <header th:replace="~{/fragments/header :: header}"></header>
 
 <div class="container">
+    <div class="container">
+        <span th:text="Types"/>
+        <th:block th:each="type:${types}">
+            <div class="row">
+                <a th:href="@{/advertisements(type=${type.name}, manufacturer='', model='')}">
+                    <span th:text="${type.name}"/>
+                </a>
+            </div>
+        </th:block>
+    </div>
+    <div class="container">
+        <span th:text="Manufacturers"/>
+        <th:block th:each="manufacturer:${manufacturers}">
+            <div class="row">
+                <a th:href="@{/advertisements(type=${type}, manufacturer=${manufacturer.name}, model='')}">
+                    <span th:text="${manufacturer.name}"/>
+                </a>
+            </div>
+        </th:block>
+    </div>
+    <div class="container">
+        <span th:text="Models"/>
+        <th:block th:each="model:${models}">
+            <div class="row">
+                <a th:href="@{/advertisements(type=${type}, manufacturer=${manufacturer}, model=${model.name})}">
+                    <span th:text="${model.name}"/>
+                </a>
+            </div>
+        </th:block>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="row">

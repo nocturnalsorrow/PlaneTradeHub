@@ -13,62 +13,29 @@
 <body>
 
 <header th:replace="~{/fragments/header :: header}"></header>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form th:method="POST" th:action="@{/advertisements}">
-                <div class="messages"></div>
-                <div class="controls">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="type"><span th:text="Type"></span></label>
-                                <input id="type" type="text" th:field="${advertisement.aircraft.type.name}"
-                                       class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="manufacturer"><span th:text="Brand"></span></label>
-                            <input id="manufacturer" type="text" th:field="${advertisement.aircraft.manufacturer.name}"
-                                   class="form-control js-name">
 
-                            <!--                <label for="manufacturer"><span th:text="Brand"></span></label>-->
-                            <!--                <select class="form-control" th:field="${advertisement.aircraft.manufacturer.name}" id="manufacturer">-->
-                            <!--                    <option hidden th:value="''" th:text="''" selected></option>-->
-                            <!--                    <th:block th:each="manufacturer:${manufacturer}">-->
-                            <!--                        <option th:value="${manufacturer}" th:text="${manufacturer}"></option>-->
-                            <!--                    </th:block>-->
-                            <!--                </select>-->
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="model"><span th:text="Model"></span></label>
-                                <input id="model" type="text" th:field="${advertisement.aircraft.model.name}"
-                                       class="form-control js-name">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="year"><span th:text="Year"></span></label>
-                                <input id="year" type="text" th:field="${advertisement.aircraft.year}"
-                                       class="form-control js-name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary" th:text="Submit"></button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            </form>
-        </div>
-    </div>
-</div>
+
 <div class="container">
+    <div class="container">
+        <span th:text="Types"/>
+        <th:block th:each="type:${types}">
+            <div class="row">
+                <a th:href="@{/advertisements(type=${type.name}, manufacturer='', model='')}">
+                    <span th:text="${type.name}"/>
+                </a>
+            </div>
+        </th:block>
+    </div>
+    <div class="container">
+        <span th:text="Manufacturers"/>
+        <th:block th:each="manufacturer:${manufacturers}">
+            <div class="row">
+                <a th:href="@{/advertisements(type='', manufacturer=${manufacturer.name}, model='')}">
+                    <span th:text="${manufacturer.name}"/>
+                </a>
+            </div>
+        </th:block>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="row">
@@ -77,9 +44,9 @@
                         <h4 class="front-weight-bold blue-text">
                             <a th:href="@{/{id}(id=${advertisement.id})}">
                                 <strong>
-                                    <span th:text="${advertisement.aircraft.manufacturer.name}"/> <span
-                                        th:text="${advertisement.aircraft.model.name}"/> <span
-                                        th:text="${advertisement.aircraft.year}"/>
+                                    <span th:text="${advertisement.aircraft.manufacturer.name}"/>
+                                    <span th:text="${advertisement.aircraft.model.name}"/>
+                                    <span th:text="${advertisement.aircraft.year}"/>
                                 </strong>
                             </a>
                         </h4>

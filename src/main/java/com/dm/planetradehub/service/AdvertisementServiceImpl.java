@@ -1,6 +1,7 @@
 package com.dm.planetradehub.service;
 
 import com.dm.planetradehub.entity.Advertisement;
+import com.dm.planetradehub.entity.Type;
 import com.dm.planetradehub.repository.AdvertisementRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,10 @@ public class AdvertisementServiceImpl implements AdvertisementService{
                 advertisement.getAircraft().getManufacturer().getName(),
                 advertisement.getAircraft().getModel().getName(),
                 advertisement.getAircraft().getYear());
+    }
+    @Override
+    public List<Advertisement> findAdvertisementsBy(String type, String manufacturer, String model, int year){
+        return advertisementRepository.findAdvertisementsByParameters(type, manufacturer, model, year);
     }
 
     @Override

@@ -9,6 +9,8 @@ public interface AdvertisementService {
 
     List<Advertisement> findAdvertisementsByParameters(Advertisement advertisement);
 
+    List<Advertisement> findAdvertisementsBy(String type, String manufacturer, String model, int year);
+
     Advertisement getAdvertisementById(Long id);
 
     Advertisement saveAdvertisement(Advertisement advertisement);

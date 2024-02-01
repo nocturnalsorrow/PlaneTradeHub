@@ -2,6 +2,8 @@ package com.dm.planetradehub.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.util.Collection;
 import java.util.List;
@@ -16,11 +18,9 @@ public class Manufacturer {
     @Basic
     @Column(name = "name")
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
-    private Type type;
+    @Basic
+    @Column(name = "type_id")
+    private Long typeId;
     @OneToOne(mappedBy = "manufacturer")
     private Aircraft aircraft;
-    @OneToMany(mappedBy = "manufacturer")
-    private List<Model> model;
 }
