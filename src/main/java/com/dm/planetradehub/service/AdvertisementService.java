@@ -22,4 +22,6 @@ public interface AdvertisementService {
     Advertisement saveAdvertisement(Advertisement advertisement);
 
     void deleteAdvertisementById(Long id);
+
+    Optional<Gallery> getAdvertisementImage(Long advertisementId, Long imageId);
 }

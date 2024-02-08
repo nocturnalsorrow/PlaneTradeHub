@@ -1,6 +1,7 @@
 package com.dm.planetradehub.controller;
 
 import com.dm.planetradehub.entity.Advertisement;
+import com.dm.planetradehub.entity.Gallery;
 import com.dm.planetradehub.repository.AdvertisementRepository;
 import com.dm.planetradehub.repository.ManufacturerRepository;
 import com.dm.planetradehub.repository.ModelRepository;
