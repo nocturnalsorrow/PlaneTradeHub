@@ -50,6 +50,9 @@
                                 </strong>
                             </a>
                         </h4>
+                        <div th:each="image : ${advertisement.images}">
+                            <img th:if="${image.image != null}" th:src="@{/{advertisementId}/image/{imageId}(advertisementId=${advertisement.id}, imageId=${image.id})}" class="img-thumbnail" alt="Product Image">
+                        </div>
                         <span th:text="Run"/> : <span th:text="${advertisement.aircraft.run}"/> <br/>
                         <span th:text="Price"/> : <span th:text="${advertisement.price} + '$'"/> <br/>
                         <span th:text="City"/> : <span th:text="${advertisement.city}"/> <br/>

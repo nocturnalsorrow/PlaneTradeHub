@@ -3,7 +3,9 @@ package com.dm.planetradehub.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -39,4 +41,7 @@ public class Advertisement {
     @Basic
     @Column(name = "publication_date")
     private Date publicationDate;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "advertisement")
+    private List<Gallery> images = new ArrayList<>();
 }

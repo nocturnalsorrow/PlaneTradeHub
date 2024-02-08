@@ -8,9 +8,19 @@ import com.dm.planetradehub.repository.TypeRepository;
 import com.dm.planetradehub.service.AdvertisementService;
 import com.dm.planetradehub.service.AircraftService;
 import com.dm.planetradehub.service.ModelService;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.Base64;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AdvertisementController {
@@ -40,6 +50,34 @@ public class AdvertisementController {
         model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
 
         return "index";
+    }
+
+    @GetMapping("/advertisement")
+    public String addAdvertisement(Model model) {
+        model.addAttribute("advertisement", new Advertisement());
+        return "add-product";
+    }
+
+    @PostMapping("/advertisement")
+    public String addProduct(@ModelAttribute Advertisement advertisement, @RequestParam("imageFiles") List<MultipartFile> imageFiles)
+            throws IOException {
+        advertisementService.addAdvertisement(advertisement, imageFiles);
+        return "redirect:/get-products";
+    }
+
+    @GetMapping("/{advertisementId}/image/{imageId}")
+    public ResponseEntity<byte[]> getAdvertisementImage(@PathVariable Long advertisementId, @PathVariable Long imageId) {
+        Optional<Gallery> advertisementImageOptional = advertisementService.getAdvertisementImage(advertisementId, imageId);
+
+        if (advertisementImageOptional.isPresent()) {
+            Gallery advertisementImage = advertisementImageOptional.get();
+            byte[] imageBytes = Base64.getDecoder().decode(advertisementImage.getImage());
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG);
+            return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new byte[0], HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/advertisements")
