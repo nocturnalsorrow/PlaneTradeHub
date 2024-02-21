@@ -7,6 +7,8 @@ import lombok.ToString;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude = {"type", "manufacturer", "model"})
+@ToString(exclude = {"type", "manufacturer", "model"})
 public class Aircraft {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

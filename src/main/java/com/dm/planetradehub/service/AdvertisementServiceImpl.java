@@ -3,6 +3,7 @@ package com.dm.planetradehub.service;
 import com.dm.planetradehub.entity.Advertisement;
 import com.dm.planetradehub.entity.Gallery;
 import com.dm.planetradehub.repository.AdvertisementRepository;
+import com.dm.planetradehub.repository.AircraftRepository;
 import com.dm.planetradehub.repository.GalleryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,10 +17,12 @@ import java.util.Optional;
 @Service
 public class AdvertisementServiceImpl implements AdvertisementService{
     private final AdvertisementRepository advertisementRepository;
+    private final AircraftRepository aircraftRepository;
     private final GalleryRepository galleryRepository;
 
-    public AdvertisementServiceImpl(AdvertisementRepository advertisementRepository, GalleryRepository galleryRepository) {
+    public AdvertisementServiceImpl(AdvertisementRepository advertisementRepository, AircraftRepository aircraftRepository, GalleryRepository galleryRepository) {
         this.advertisementRepository = advertisementRepository;
+        this.aircraftRepository = aircraftRepository;
         this.galleryRepository = galleryRepository;
     }
 
@@ -54,6 +57,8 @@ public class AdvertisementServiceImpl implements AdvertisementService{
             advertisementImage.setAdvertisement(advertisement);
             advertisementImages.add(advertisementImage);
         }
+        aircraftRepository.save(advertisement.getAircraft());
+
 
         advertisement.setImages(advertisementImages);
         return advertisementRepository.save(advertisement);

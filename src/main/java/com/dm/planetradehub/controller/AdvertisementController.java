@@ -1,6 +1,7 @@
 package com.dm.planetradehub.controller;
 
 import com.dm.planetradehub.entity.Advertisement;
+import com.dm.planetradehub.entity.Aircraft;
 import com.dm.planetradehub.entity.Gallery;
 import com.dm.planetradehub.repository.AdvertisementRepository;
 import com.dm.planetradehub.repository.ManufacturerRepository;
@@ -55,15 +56,19 @@ public class AdvertisementController {
 
     @GetMapping("/advertisement")
     public String addAdvertisement(Model model) {
+        model.addAttribute("types", typeRepository.findAll());
+        model.addAttribute("manufacturers", manufacturerRepository.findAll());
+        model.addAttribute("models", modelService.getAllModels());
         model.addAttribute("advertisement", new Advertisement());
-        return "add-product";
+        model.addAttribute("aircraft", new Aircraft());
+        return "createAdvertisement";
     }
 
     @PostMapping("/advertisement")
-    public String addProduct(@ModelAttribute Advertisement advertisement, @RequestParam("imageFiles") List<MultipartFile> imageFiles)
+    public String addProduct(@ModelAttribute Advertisement advertisement, @ModelAttribute Aircraft aircraft, @RequestParam("imageFiles") List<MultipartFile> imageFiles)
             throws IOException {
         advertisementService.addAdvertisement(advertisement, imageFiles);
-        return "redirect:/get-products";
+        return "redirect:/";
     }
 
     @GetMapping("/{advertisementId}/image/{imageId}")

@@ -10,8 +10,8 @@ import java.util.List;
 
 @Entity
 @Data
-@EqualsAndHashCode(exclude = {"user", "aircraft"})
-@ToString(exclude = {"user", "aircraft"})
+@EqualsAndHashCode(exclude = {"user", "aircraft", "advertisement"})
+@ToString(exclude = {"user", "aircraft", "advertisement"})
 public class Advertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
