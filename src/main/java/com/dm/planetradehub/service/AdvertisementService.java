@@ -1,6 +1,7 @@
 package com.dm.planetradehub.service;
 
 import com.dm.planetradehub.entity.Advertisement;
+import com.dm.planetradehub.entity.Aircraft;
 import com.dm.planetradehub.entity.Gallery;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,7 +18,7 @@ public interface AdvertisementService {
 
     Advertisement getAdvertisementById(Long id);
 
-    Advertisement addAdvertisement(Advertisement advertisement, List<MultipartFile> imageFiles) throws IOException;
+    Advertisement addAdvertisement(Advertisement advertisement, Aircraft aircraft, List<MultipartFile> imageFiles) throws IOException;
 
     Advertisement saveAdvertisement(Advertisement advertisement);
 

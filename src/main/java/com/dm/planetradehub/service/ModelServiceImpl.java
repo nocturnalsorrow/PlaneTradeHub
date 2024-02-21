@@ -22,7 +22,7 @@ public class ModelServiceImpl implements ModelService{
 
     @Override
     public List<Model> getAllModels() {
-        return null;
+        return modelRepository.findAll() ;
     }
 
     @Override

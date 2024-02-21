@@ -65,14 +65,17 @@ public class AdvertisementController {
     }
 
     @PostMapping("/advertisement")
-    public String addProduct(@ModelAttribute Advertisement advertisement, @ModelAttribute Aircraft aircraft, @RequestParam("imageFiles") List<MultipartFile> imageFiles)
+    public String addProduct(@ModelAttribute Advertisement advertisement,
+                             @ModelAttribute Aircraft aircraft,
+                             @RequestParam("imageFiles") List<MultipartFile> imageFiles)
             throws IOException {
-        advertisementService.addAdvertisement(advertisement, imageFiles);
+        advertisementService.addAdvertisement(advertisement, aircraft, imageFiles);
         return "redirect:/";
     }
 
     @GetMapping("/{advertisementId}/image/{imageId}")
-    public ResponseEntity<byte[]> getAdvertisementImage(@PathVariable Long advertisementId, @PathVariable Long imageId) {
+    public ResponseEntity<byte[]> getAdvertisementImage(@PathVariable Long advertisementId,
+                                                        @PathVariable Long imageId) {
         Optional<Gallery> advertisementImageOptional = advertisementService.getAdvertisementImage(advertisementId, imageId);
 
         if (advertisementImageOptional.isPresent()) {

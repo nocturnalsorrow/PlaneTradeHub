@@ -14,13 +14,13 @@ public class Aircraft {
     @Id
     @Column(name = "id")
     private long id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false)
     private Type type;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manufacturer_id", referencedColumnName = "id", nullable = false)
     private Manufacturer manufacturer;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "model_id", referencedColumnName = "id", nullable = false)
     private Model model;
     @Basic

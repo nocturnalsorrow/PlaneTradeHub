@@ -20,7 +20,7 @@ public class Advertisement {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "aircraft_id", referencedColumnName = "id", nullable = false)
     private Aircraft aircraft;
     @Basic
