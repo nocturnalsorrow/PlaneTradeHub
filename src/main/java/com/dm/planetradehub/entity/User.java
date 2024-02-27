@@ -7,7 +7,11 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

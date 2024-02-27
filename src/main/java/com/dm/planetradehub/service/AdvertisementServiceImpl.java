@@ -4,6 +4,7 @@ import com.dm.planetradehub.entity.Advertisement;
 import com.dm.planetradehub.entity.Aircraft;
 import com.dm.planetradehub.entity.Gallery;
 import com.dm.planetradehub.repository.*;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,17 +22,17 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     private final TypeRepository typeRepository;
     private final ManufacturerRepository manufacturerRepository;
     private final ModelRepository modelRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
 
 
-    public AdvertisementServiceImpl(AdvertisementRepository advertisementRepository, AircraftRepository aircraftRepository, GalleryRepository galleryRepository, TypeRepository typeRepository, ManufacturerRepository manufacturerRepository, ModelRepository modelRepository, UserRepository userRepository) {
+    public AdvertisementServiceImpl(AdvertisementRepository advertisementRepository, AircraftRepository aircraftRepository, GalleryRepository galleryRepository, TypeRepository typeRepository, ManufacturerRepository manufacturerRepository, ModelRepository modelRepository, UserService userService) {
         this.advertisementRepository = advertisementRepository;
         this.aircraftRepository = aircraftRepository;
         this.galleryRepository = galleryRepository;
         this.typeRepository = typeRepository;
         this.manufacturerRepository = manufacturerRepository;
         this.modelRepository = modelRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -56,7 +57,7 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     public Advertisement getAdvertisementById(Long id) { return advertisementRepository.findAdvertisementById(id); }
 
     @Override
-    public Advertisement addAdvertisement(Advertisement advertisement, Aircraft aircraft, List<MultipartFile> imageFiles) throws IOException {
+    public Advertisement addAdvertisement(Advertisement advertisement, Aircraft aircraft, List<MultipartFile> imageFiles, Authentication authentication) throws IOException {
         List<Gallery> advertisementImages = new ArrayList<>();
 
         aircraft.setType(typeRepository.getReferenceById(aircraft.getType().getId()));
@@ -70,7 +71,7 @@ public class AdvertisementServiceImpl implements AdvertisementService{
             advertisementImages.add(advertisementImage);
         }
         advertisement.setAircraft(aircraft);
-        advertisement.setUser(userRepository.getReferenceById(1L));
+        advertisement.setUser(userService.getUserByEmail(authentication.getName()));
         advertisement.setImages(advertisementImages);
         return advertisementRepository.save(advertisement);
     }

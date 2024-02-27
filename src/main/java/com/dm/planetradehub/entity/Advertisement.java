@@ -9,9 +9,11 @@ import java.util.List;
 
 
 @Entity
-@Data
-@EqualsAndHashCode(exclude = {"user", "aircraft", "advertisement"})
-@ToString(exclude = {"user", "aircraft", "advertisement"})
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode
 public class Advertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -24,8 +26,8 @@ public class Advertisement {
     @JoinColumn(name = "aircraft_id", referencedColumnName = "id", nullable = false)
     private Aircraft aircraft;
     @Basic
-    @Column(name = "condition")
-    private String condition;
+    @Column(name = "state")
+    private String state;
     @Basic
     @Column(name = "price")
     private int price;

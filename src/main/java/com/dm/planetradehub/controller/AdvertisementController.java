@@ -14,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,9 +68,10 @@ public class AdvertisementController {
     @PostMapping("/advertisement")
     public String addProduct(@ModelAttribute Advertisement advertisement,
                              @ModelAttribute Aircraft aircraft,
-                             @RequestParam("imageFiles") List<MultipartFile> imageFiles)
+                             @RequestParam("imageFiles") List<MultipartFile> imageFiles,
+                             Authentication authentication)
             throws IOException {
-        advertisementService.addAdvertisement(advertisement, aircraft, imageFiles);
+        advertisementService.addAdvertisement(advertisement, aircraft, imageFiles, authentication);
         return "redirect:/";
     }
 
