@@ -17,37 +17,26 @@
     <h3>Create advertisement</h3>
     <form th:action="@{/advertisement}" th:method="POST" enctype="multipart/form-data">
         <div class="form-group">
-            <input name="articleId" type="hidden" th:value="${advertisement.id}" class="form-control"
-                   style="width: 33%"/>
-        </div>
-        <div class="form-group">
             <label for="type"><strong>Type</strong></label>
-            <select class="form-control" th:field="${aircraft.type}" id="type">
+            <select class="form-control" th:field="${aircraft.type}" id="type" style="width: 33%">
                 <option hidden th:value="0" th:text="''" selected></option>
                 <option th:each="type : ${types}" th:value="${type.name}" th:text="${type.name}"></option>
             </select>
-            <!--            <input name="type" type="text" th:field="${advertisement.aircraft.type.name}" id="type" class="form-control"-->
-            <!--                   required style="width: 33%"/>-->
-        </div>
+                    </div>
         <div class="form-group">
             <label for="manufacturer"><strong>Manufacturer</strong></label>
-            <select class="form-control" th:field="${aircraft.manufacturer}" id="manufacturer">
+            <select class="form-control" th:field="${aircraft.manufacturer}" id="manufacturer" style="width: 33%">
                 <option hidden th:value="0" th:text="''" selected></option>
                 <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.name}" th:text="${manufacturer.name}"></option>
             </select>
-            <!--            <input name="manufacturer" type="text" th:field="${advertisement.aircraft.manufacturer.name}"-->
-            <!--                   id="manufacturer" class="form-control"-->
-            <!--                   required style="width: 33%"/>-->
-        </div>
+                   </div>
         <div class="form-group">
             <label for="model"><strong>model</strong></label>
-            <select class="form-control" th:field="${aircraft.model}" id="model">
+            <select class="form-control" th:field="${aircraft.model}" id="model" style="width: 33%">
                 <option hidden th:value="0" th:text="''" selected></option>
                 <option th:each="model : ${models}" th:value="${model.name}" th:text="${model.name}"></option>
             </select>
-            <!--            <input name="model" type="text" th:field="${advertisement.aircraft.model.name}" id="model"-->
-            <!--                   class="form-control"-->
-            <!--                   required style="width: 33%"/>-->
+            
         </div>
         <div class="form-group">
             <label for="run"><strong>run</strong></label>

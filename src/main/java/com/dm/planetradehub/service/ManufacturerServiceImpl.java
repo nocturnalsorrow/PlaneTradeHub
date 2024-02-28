@@ -16,7 +16,7 @@ public class ManufacturerServiceImpl implements ManufacturerService{
 
     @Override
     public List<Manufacturer> getAllManufacturers() {
-        return null;
+        return manufacturerRepository.findAll();
     }
 
     @Override
@@ -31,6 +31,6 @@ public class ManufacturerServiceImpl implements ManufacturerService{
 
     @Override
     public Manufacturer saveManufacturer(Manufacturer manufacturer) {
-        return null;
+        return manufacturerRepository.save(manufacturer);
     }
 }
