@@ -9,11 +9,7 @@ import java.util.List;
 
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
+@Data
 public class Advertisement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

@@ -22,18 +22,18 @@
         </div>
         <div class="form-group">
             <label for="type"><strong>Type</strong></label>
-            <select class="form-control" th:field="${aircraft.type.id}" id="type">
+            <select class="form-control" th:field="${aircraft.type}" id="type">
                 <option hidden th:value="0" th:text="''" selected></option>
-                <option th:each="type : ${types}" th:value="${type.id}" th:text="${type.name}"></option>
+                <option th:each="type : ${types}" th:value="${type.name}" th:text="${type.name}"></option>
             </select>
             <!--            <input name="type" type="text" th:field="${advertisement.aircraft.type.name}" id="type" class="form-control"-->
             <!--                   required style="width: 33%"/>-->
         </div>
         <div class="form-group">
             <label for="manufacturer"><strong>Manufacturer</strong></label>
-            <select class="form-control" th:field="${aircraft.manufacturer.id}" id="manufacturer">
+            <select class="form-control" th:field="${aircraft.manufacturer}" id="manufacturer">
                 <option hidden th:value="0" th:text="''" selected></option>
-                <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.id}" th:text="${manufacturer.name}"></option>
+                <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.name}" th:text="${manufacturer.name}"></option>
             </select>
             <!--            <input name="manufacturer" type="text" th:field="${advertisement.aircraft.manufacturer.name}"-->
             <!--                   id="manufacturer" class="form-control"-->
@@ -41,9 +41,9 @@
         </div>
         <div class="form-group">
             <label for="model"><strong>model</strong></label>
-            <select class="form-control" th:field="${aircraft.model.id}" id="model">
+            <select class="form-control" th:field="${aircraft.model}" id="model">
                 <option hidden th:value="0" th:text="''" selected></option>
-                <option th:each="model : ${models}" th:value="${model.id}" th:text="${model.name}"></option>
+                <option th:each="model : ${models}" th:value="${model.name}" th:text="${model.name}"></option>
             </select>
             <!--            <input name="model" type="text" th:field="${advertisement.aircraft.model.name}" id="model"-->
             <!--                   class="form-control"-->

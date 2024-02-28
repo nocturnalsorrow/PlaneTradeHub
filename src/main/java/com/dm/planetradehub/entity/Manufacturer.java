@@ -21,6 +21,4 @@ public class Manufacturer {
     @Basic
     @Column(name = "type_id")
     private Long typeId;
-    @OneToOne(mappedBy = "manufacturer")
-    private Aircraft aircraft;
 }

@@ -1,7 +1,6 @@
 package com.dm.planetradehub.service;
 
 import com.dm.planetradehub.entity.Model;
-import com.dm.planetradehub.repository.ManufacturerRepository;
 import com.dm.planetradehub.repository.ModelRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,11 +8,8 @@ import java.util.List;
 
 @Service
 public class ModelServiceImpl implements ModelService{
-
     private final ManufacturerService manufacturerService;
-
     private final ModelRepository modelRepository;
-
 
     public ModelServiceImpl(ManufacturerService manufacturerService, ModelRepository modelRepository) {
         this.manufacturerService = manufacturerService;

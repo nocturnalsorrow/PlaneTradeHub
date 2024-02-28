@@ -12,9 +12,9 @@ import java.util.List;
 public interface AdvertisementRepository extends JpaRepository<Advertisement, Long> {
 
     @Query(value = "select a from Advertisement a " +
-            "where (a.aircraft.type.name = :type or :type = '') " +
-            "and (a.aircraft.manufacturer.name = :manufacturer or :manufacturer  = '') " +
-            "and (a.aircraft.model.name = :model or :model = '') " +
+            "where (a.aircraft.type = :type or :type = '') " +
+            "and (a.aircraft.manufacturer = :manufacturer or :manufacturer  = '') " +
+            "and (a.aircraft.model = :model or :model = '') " +
             "and (a.aircraft.year = :year or :year = '0') " +
             "ORDER BY a.publicationDate desc")
     List<Advertisement> findAdvertisementsByParameters(@Param("type") String type,

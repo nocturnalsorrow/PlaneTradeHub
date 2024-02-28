@@ -17,21 +17,13 @@ import java.util.Optional;
 @Service
 public class AdvertisementServiceImpl implements AdvertisementService{
     private final AdvertisementRepository advertisementRepository;
-    private final AircraftRepository aircraftRepository;
     private final GalleryRepository galleryRepository;
-    private final TypeRepository typeRepository;
-    private final ManufacturerRepository manufacturerRepository;
-    private final ModelRepository modelRepository;
     private final UserService userService;
 
 
-    public AdvertisementServiceImpl(AdvertisementRepository advertisementRepository, AircraftRepository aircraftRepository, GalleryRepository galleryRepository, TypeRepository typeRepository, ManufacturerRepository manufacturerRepository, ModelRepository modelRepository, UserService userService) {
+    public AdvertisementServiceImpl(AdvertisementRepository advertisementRepository, GalleryRepository galleryRepository, UserService userService) {
         this.advertisementRepository = advertisementRepository;
-        this.aircraftRepository = aircraftRepository;
         this.galleryRepository = galleryRepository;
-        this.typeRepository = typeRepository;
-        this.manufacturerRepository = manufacturerRepository;
-        this.modelRepository = modelRepository;
         this.userService = userService;
     }
 
@@ -42,9 +34,9 @@ public class AdvertisementServiceImpl implements AdvertisementService{
 
     @Override
     public List<Advertisement> findAdvertisementsByParameters(Advertisement advertisement){
-        return advertisementRepository.findAdvertisementsByParameters(advertisement.getAircraft().getType().getName(),
-                advertisement.getAircraft().getManufacturer().getName(),
-                advertisement.getAircraft().getModel().getName(),
+        return advertisementRepository.findAdvertisementsByParameters(advertisement.getAircraft().getType(),
+                advertisement.getAircraft().getManufacturer(),
+                advertisement.getAircraft().getModel(),
                 advertisement.getAircraft().getYear());
     }
 
@@ -59,10 +51,6 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     @Override
     public Advertisement addAdvertisement(Advertisement advertisement, Aircraft aircraft, List<MultipartFile> imageFiles, Authentication authentication) throws IOException {
         List<Gallery> advertisementImages = new ArrayList<>();
-
-        aircraft.setType(typeRepository.getReferenceById(aircraft.getType().getId()));
-        aircraft.setManufacturer(manufacturerRepository.getReferenceById(aircraft.getManufacturer().getId()));
-        aircraft.setModel(modelRepository.getReferenceById(aircraft.getModel().getId()));
 
         for (MultipartFile file : imageFiles) {
             Gallery advertisementImage = new Gallery();
