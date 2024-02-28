@@ -29,7 +29,6 @@ public class ManufacturerServiceImpl implements ManufacturerService{
         return manufacturerRepository.getManufacturerByName(name);
     }
 
-
     @Override
     public Manufacturer saveManufacturer(Manufacturer manufacturer) {
         return null;

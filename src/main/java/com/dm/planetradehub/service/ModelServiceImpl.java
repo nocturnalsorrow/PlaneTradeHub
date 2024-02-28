@@ -23,12 +23,12 @@ public class ModelServiceImpl implements ModelService{
 
     @Override
     public Model getModelById(Long id) {
-        return null;
+        return modelRepository.getReferenceById(id);
     }
 
     @Override
     public Model saveModel(Model model) {
-        return null;
+        return modelRepository.save(model);
     }
 
     @Override
