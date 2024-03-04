@@ -1,6 +1,7 @@
 package com.dm.planetradehub.repository;
 
 import com.dm.planetradehub.entity.Advertisement;
+import com.dm.planetradehub.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,4 +24,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
                                                        @Param("year") int year);
 
     Advertisement findAdvertisementById(Long id);
+
+    List<Advertisement> findAdvertisementsByUser(User user);
+
 }

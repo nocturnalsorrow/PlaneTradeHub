@@ -13,6 +13,8 @@ import java.util.Optional;
 public interface AdvertisementService {
     List<Advertisement> getAllAdvertisements();
 
+    List<Advertisement> getMyAdvertisements(Authentication authentication);
+
     List<Advertisement> findAdvertisementsByParameters(Advertisement advertisement);
 
     List<Advertisement> findAdvertisementsBy(String type, String manufacturer, String model, int year);

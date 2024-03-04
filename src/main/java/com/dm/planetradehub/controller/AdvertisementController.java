@@ -1,23 +1,16 @@
 package com.dm.planetradehub.controller;
 
-import com.dm.planetradehub.entity.Advertisement;
-import com.dm.planetradehub.entity.Aircraft;
 import com.dm.planetradehub.entity.Gallery;
-import com.dm.planetradehub.repository.AdvertisementRepository;
 import com.dm.planetradehub.service.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.Base64;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,7 +20,7 @@ public class AdvertisementController {
     private final ManufacturerService manufacturerService;
     private final ModelService modelService;
 
-    public AdvertisementController(AdvertisementService advertisementService, TypeService typeService, ManufacturerService manufacturerService, ModelService modelService, AdvertisementRepository advertisementRepository) {
+    public AdvertisementController(AdvertisementService advertisementService, TypeService typeService, ManufacturerService manufacturerService, ModelService modelService) {
         this.advertisementService = advertisementService;
         this.typeService = typeService;
         this.manufacturerService = manufacturerService;
@@ -42,26 +35,6 @@ public class AdvertisementController {
         model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
 
         return "index";
-    }
-
-    @GetMapping("/advertisement")
-    public String addAdvertisement(Model model) {
-        model.addAttribute("types", typeService.getAllTypes());
-        model.addAttribute("manufacturers", manufacturerService.getAllManufacturers());
-        model.addAttribute("models", modelService.getAllModels());
-        model.addAttribute("advertisement", new Advertisement());
-        model.addAttribute("aircraft", new Aircraft());
-        return "createAdvertisement";
-    }
-
-    @PostMapping("/advertisement")
-    public String addProduct(@ModelAttribute Advertisement advertisement,
-                             @ModelAttribute Aircraft aircraft,
-                             @RequestParam("imageFiles") List<MultipartFile> imageFiles,
-                             Authentication authentication)
-            throws IOException {
-        advertisementService.addAdvertisement(advertisement, aircraft, imageFiles, authentication);
-        return "redirect:/";
     }
 
     @GetMapping("/{advertisementId}/image/{imageId}")

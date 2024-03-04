@@ -10,6 +10,7 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a th:href="@{/}" class="nav-link px-2 text-white" th:text="Home"></a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/profile}" class="nav-link px-2 text-white" th:text="Profile"></a></li>
             </ul>
 
             <div class="text-end">

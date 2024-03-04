@@ -2,30 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="sdfghfg"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${advertisement.aircraft.manufacturer} + ' ' + ${advertisement.aircraft.model}"></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+
+        .main-container {
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .aircraft-details {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .image-thumbnail {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .name-phone-container {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .name-phone-text {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
 
-<div class="row">
-    <strong>
-        <span th:text="${advertisement.aircraft.manufacturer}"/> <span th:text="${advertisement.aircraft.model}"/> <span th:text="${advertisement.aircraft.year}"/><br/>
-        PICTURE
-        <span th:text="${advertisement.price} + '$'"/> <br/>
-        <span th:text="${advertisement.aircraft.run}"/> <br/>
-        <span th:text="${advertisement.aircraft.color}"/> <br/>
-        <span th:text="${advertisement.region}"/> <span th:text="${advertisement.city}"/> <br/>
-        <span th:text="${advertisement.publicationDate}"/> <br/>
-    </strong>
-    <span th:text="${advertisement.description}"/> <br/>
+<div class="main-container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="aircraft-details">
+                        <strong>
+                            <span th:text="${advertisement.aircraft.manufacturer}"/> <span
+                                th:text="${advertisement.aircraft.model}"/> <span th:text="${advertisement.aircraft.year}"/><br/>
+                            <div th:each="image : ${advertisement.images}">
+                                <img th:if="${image.image != null}"
+                                     th:src="@{/{advertisementId}/image/{imageId}(advertisementId=${advertisement.id}, imageId=${image.id})}"
+                                     class="image-thumbnail" alt="Product Image">
+                            </div>
+                            <span th:text="Run"/> : <span th:text="${advertisement.aircraft.run}"/> <br/>
+                            <span th:text="Price"/> : <span th:text="${advertisement.price} + '$'"/> <br/>
+                            <span th:text="City"/> : <span th:text="${advertisement.city}"/> <br/>
+                            <span th:text="Placed"/> : <span th:text="${advertisement.publicationDate}"/> <br/>
+                        </strong>
+                    </div>
+                    <div class="description">
+                        <span th:text="Description"/> <br/>
+                        <span th:text="${advertisement.description}"/> <br/>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 name-phone-container">
+                    <div class="name-phone-text">
+                        <span th:text="Name"/> : <span th:text="${advertisement.user.name}"/> <br/>
+                        <span th:text="Phone"/> : <span th:text="${advertisement.user.phone}"/> <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>
 </html>
+
+
+

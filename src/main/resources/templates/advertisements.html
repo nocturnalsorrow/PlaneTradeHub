@@ -52,12 +52,13 @@
                         <h4 class="front-weight-bold blue-text">
                             <a th:href="@{/{id}(id=${advertisement.id})}">
                                 <strong>
-                                    <span th:text="${advertisement.aircraft.manufacturer}"/> <span
-                                        th:text="${advertisement.aircraft.model}"/> <span
-                                        th:text="${advertisement.aircraft.year}"/>
+                                    <span th:text="${advertisement.aircraft.manufacturer}"/>
+                                    <span th:text="${advertisement.aircraft.model}"/>
+                                    <span th:text="${advertisement.aircraft.year}"/>
                                 </strong>
                             </a>
                         </h4>
+                        <img th:src="@{/{advertisementId}/image/{imageId}(advertisementId=${advertisement.id}, imageId=${advertisement.images[0].id})}" class="img-thumbnail" alt="Product Image">
                         <span th:text="Run"/> : <span th:text="${advertisement.aircraft.run}"/> <br/>
                         <span th:text="Price"/> : <span th:text="${advertisement.price} + '$'"/> <br/>
                         <span th:text="City"/> : <span th:text="${advertisement.city}"/> <br/>

@@ -26,7 +26,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/", "/login", "/login-error", "/signUp", "/error", "/{advertisementId}/image/{imageId}")
                         .permitAll()
                         .requestMatchers("/advertisement")
-                        .hasAuthority("ADMIN")
+                        .hasAnyAuthority("USER", "ADMIN")
                         .anyRequest()
                         .authenticated()
                 )
