@@ -35,12 +35,14 @@
                             </strong>
                         </a>
                     </h4>
-                    <img th:src="@{/{advertisementId}/image/{imageId}(advertisementId=${advertisement.id}, imageId=${advertisement.images[0].id})}" class="img-thumbnail" alt="Product Image"> <br/>
+                    <img th:if="${image.image != null}" th:src="@{/{advertisementId}/image/{imageId}(advertisementId=${advertisement.id}, imageId=${image.id})}" class="image-thumbnail" alt="Product Image">
                     <span th:text="Run"/> : <span th:text="${advertisement.aircraft.run}"/> <br/>
                     <span th:text="Price"/> : <span th:text="${advertisement.price} + '$'"/> <br/>
                     <span th:text="City"/> : <span th:text="${advertisement.city}"/> <br/>
                     <span th:text="Placed"/> : <span th:text="${advertisement.publicationDate}"/> <br/>
-
+                    <a th:href="@{/myAdvertisements/{id}(id=${advertisement.id})}">
+                        <strong><span th:text="Delete"></span></strong>
+                    </a>
                     &nbsp;&nbsp;
                     &nbsp;&nbsp;
                 </th:block>

@@ -3,7 +3,6 @@ package com.dm.planetradehub.service;
 import com.dm.planetradehub.entity.Advertisement;
 import com.dm.planetradehub.entity.Aircraft;
 import com.dm.planetradehub.entity.Gallery;
-import com.dm.planetradehub.entity.User;
 import com.dm.planetradehub.repository.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -64,7 +63,7 @@ public class AdvertisementServiceImpl implements AdvertisementService{
             Gallery advertisementImage = new Gallery();
             advertisementImage.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
             advertisementImage.setAdvertisement(advertisement);
-            advertisementRepository.save(advertisement);
+            advertisementImages.add(advertisementImage);
         }
         advertisement.setAircraft(aircraft);
         advertisement.setUser(userService.getUserByEmail(authentication.getName()));
