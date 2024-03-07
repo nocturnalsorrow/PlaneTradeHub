@@ -57,7 +57,7 @@ public class ProfileController {
                                         @ModelAttribute Aircraft aircraft,
                                         @RequestParam("imageFiles") List<MultipartFile> imageFiles,
                                         Authentication authentication) throws IOException {
-        advertisementService.updateAdvertisement(advertisement, aircraft, imageFiles, authentication);
+        advertisementService.updateAdvertisement(advertisement, imageFiles, authentication);
         return "redirect:/myAdvertisements";
     }
 
