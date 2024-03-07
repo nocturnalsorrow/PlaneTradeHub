@@ -23,6 +23,8 @@ public interface AdvertisementService {
 
     Advertisement addAdvertisement(Advertisement advertisement, Aircraft aircraft, List<MultipartFile> imageFiles, Authentication authentication) throws IOException;
 
+    Advertisement updateAdvertisement(Advertisement advertisement, List<MultipartFile> imageFiles, Authentication authentication) throws IOException;
+
     Advertisement saveAdvertisement(Advertisement advertisement);
 
     void deleteAdvertisementById(Long id);

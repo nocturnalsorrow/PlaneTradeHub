@@ -2,9 +2,11 @@ package com.dm.planetradehub.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 
@@ -19,6 +21,7 @@ public class Advertisement {
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
     @OneToOne(cascade = CascadeType.ALL)
+    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "aircraft_id", referencedColumnName = "id", nullable = false)
     private Aircraft aircraft;
     @Basic

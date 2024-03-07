@@ -73,6 +73,22 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     }
 
     @Override
+    public Advertisement updateAdvertisement(Advertisement advertisement, List<MultipartFile> imageFiles, Authentication authentication) throws IOException {
+        List<Gallery> advertisementImages = new ArrayList<>();
+
+        for (MultipartFile file : imageFiles) {
+            Gallery advertisementImage = new Gallery();
+            advertisementImage.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+            advertisementImage.setAdvertisement(advertisement);
+            advertisementImages.add(advertisementImage);
+        }
+
+        advertisement.setUser(userService.getUserByEmail(authentication.getName()));
+        advertisement.setImages(advertisementImages);
+        return advertisementRepository.save(advertisement);
+    }
+
+    @Override
     public Advertisement saveAdvertisement(Advertisement advertisement) {
         return advertisementRepository.save(advertisement);
     }
