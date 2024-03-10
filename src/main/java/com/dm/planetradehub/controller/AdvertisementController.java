@@ -1,7 +1,10 @@
 package com.dm.planetradehub.controller;
 
+import com.dm.planetradehub.entity.Advertisement;
 import com.dm.planetradehub.entity.Gallery;
 import com.dm.planetradehub.service.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,7 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Base64;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 public class AdvertisementController {
@@ -28,11 +34,26 @@ public class AdvertisementController {
     }
 
     @GetMapping("/")
-    public String homePage(Model model) {
+    public String homePage(@RequestParam("page") Optional<Integer> page,
+                           @RequestParam("size") Optional<Integer> size,
+                           Model model) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(2);
+
+        Page<Advertisement> advertisementPage = advertisementService.getAllAdvertisements(PageRequest.of(currentPage - 1, pageSize));
+
+        int totalPages = advertisementPage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
         model.addAttribute("types", typeService.getAllTypes());
         model.addAttribute("manufacturers", manufacturerService.getAllManufacturers());
         model.addAttribute("models", modelService.getAllModels());
-        model.addAttribute("advertisements", advertisementService.getAllAdvertisements());
+        model.addAttribute("advertisements", advertisementPage);
 
         return "index";
     }
@@ -57,14 +78,29 @@ public class AdvertisementController {
     public String advertisements(@RequestParam(value = "type", required = false) String type,
                                  @RequestParam(value = "manufacturer", required = false) String manufacturer,
                                  @RequestParam(value = "model", required = false) String modelOfAircraft,
+                                 @RequestParam("page") Optional<Integer> page,
+                                 @RequestParam("size") Optional<Integer> size,
                                  Model model) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(2);
+
+        Page<Advertisement> advertisementPage = advertisementService.findAdvertisementsBy(type, manufacturer, modelOfAircraft, 0, PageRequest.of(currentPage - 1, pageSize));
+
+        int totalPages = advertisementPage.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+
         model.addAttribute("type", type);
         model.addAttribute("manufacturer", manufacturer);
         model.addAttribute("model", modelOfAircraft);
         model.addAttribute("types", typeService.getAllTypes());
         model.addAttribute("manufacturers", manufacturerService.getAllManufacturers());
         model.addAttribute("models", modelService.getModelsByManufacturer(manufacturer));
-        model.addAttribute("advertisements", advertisementService.findAdvertisementsBy(type, manufacturer, modelOfAircraft, 0));
+        model.addAttribute("advertisements", advertisementPage);
 
         return "advertisements";
     }

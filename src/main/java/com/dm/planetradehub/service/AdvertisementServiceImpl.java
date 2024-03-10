@@ -4,6 +4,8 @@ import com.dm.planetradehub.entity.Advertisement;
 import com.dm.planetradehub.entity.Aircraft;
 import com.dm.planetradehub.entity.Gallery;
 import com.dm.planetradehub.repository.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,26 +32,27 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     }
 
     @Override
-    public List<Advertisement> getAllAdvertisements() {
-        return advertisementRepository.findAll();
+    public Page<Advertisement> getAllAdvertisements(Pageable pageable) {
+        return advertisementRepository.findAll(pageable);
     }
 
     @Override
-    public List<Advertisement> getMyAdvertisements(Authentication authentication) {
-        return advertisementRepository.findAdvertisementsByUser(userService.getUserByEmail(authentication.getName()));
+    public Page<Advertisement> getMyAdvertisements(Pageable pageable, Authentication authentication) {
+        return advertisementRepository.findAdvertisementsByUser(userService.getUserByEmail(authentication.getName()), pageable);
     }
 
     @Override
-    public List<Advertisement> findAdvertisementsByParameters(Advertisement advertisement){
+    public Page<Advertisement> findAdvertisementsByParameters(Advertisement advertisement, Pageable pageable){
         return advertisementRepository.findAdvertisementsByParameters(advertisement.getAircraft().getType(),
                 advertisement.getAircraft().getManufacturer(),
                 advertisement.getAircraft().getModel(),
-                advertisement.getAircraft().getYear());
+                advertisement.getAircraft().getYear(),
+                pageable);
     }
 
     @Override
-    public List<Advertisement> findAdvertisementsBy(String type, String manufacturer, String model, int year){
-        return advertisementRepository.findAdvertisementsByParameters(type, manufacturer, model, year);
+    public Page<Advertisement> findAdvertisementsBy(String type, String manufacturer, String model, int year, Pageable pageable){
+        return advertisementRepository.findAdvertisementsByParameters(type, manufacturer, model, year, pageable);
     }
 
     @Override

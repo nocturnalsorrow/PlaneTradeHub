@@ -3,6 +3,8 @@ package com.dm.planetradehub.service;
 import com.dm.planetradehub.entity.Advertisement;
 import com.dm.planetradehub.entity.Aircraft;
 import com.dm.planetradehub.entity.Gallery;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,13 +13,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AdvertisementService {
-    List<Advertisement> getAllAdvertisements();
+    Page<Advertisement> getAllAdvertisements(Pageable pageable);
 
-    List<Advertisement> getMyAdvertisements(Authentication authentication);
+    Page<Advertisement> getMyAdvertisements(Pageable pageable, Authentication authentication);
 
-    List<Advertisement> findAdvertisementsByParameters(Advertisement advertisement);
+    Page<Advertisement> findAdvertisementsByParameters(Advertisement advertisement, Pageable pageable);
 
-    List<Advertisement> findAdvertisementsBy(String type, String manufacturer, String model, int year);
+    Page<Advertisement> findAdvertisementsBy(String type, String manufacturer, String model, int year, Pageable pageable);
 
     Advertisement getAdvertisementById(Long id);
 

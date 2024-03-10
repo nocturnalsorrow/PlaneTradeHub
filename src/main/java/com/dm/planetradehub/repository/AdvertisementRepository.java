@@ -2,6 +2,8 @@ package com.dm.planetradehub.repository;
 
 import com.dm.planetradehub.entity.Advertisement;
 import com.dm.planetradehub.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -18,13 +20,16 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
             "and (a.aircraft.model = :model or :model = '') " +
             "and (a.aircraft.year = :year or :year = '0') " +
             "ORDER BY a.publicationDate desc")
-    List<Advertisement> findAdvertisementsByParameters(@Param("type") String type,
+    Page<Advertisement> findAdvertisementsByParameters(@Param("type") String type,
                                                        @Param("manufacturer") String manufacturer,
                                                        @Param("model") String model,
-                                                       @Param("year") int year);
+                                                       @Param("year") int year,
+                                                       Pageable pageable);
 
     Advertisement findAdvertisementById(Long id);
+    @Query(value = "select a from Advertisement a where (a.user = :user) ORDER BY a.publicationDate desc")
+    Page<Advertisement> findAdvertisementsByUser(User user, Pageable pageable);
 
-    List<Advertisement> findAdvertisementsByUser(User user);
+    Page<Advertisement> findAll(Pageable pageable);
 
 }

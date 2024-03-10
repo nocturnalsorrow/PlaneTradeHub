@@ -68,6 +68,15 @@
                         &nbsp;&nbsp;
                     </th:block>
                 </strong>
+                <div th:if="${advertisements.totalPages > 1}" class="pagination">
+                    <div th:each="pageNumber, iterStat : ${pageNumbers}">
+                        <a th:href="@{/advertisements(type=${type}, manufacturer=${manufacturer}, model=${model}, size=${advertisements.size}, page=${pageNumber})}"
+                           th:text="${pageNumber}"
+                           th:class="${pageNumber == advertisements.number + 1} ? 'active' : ''"
+                           th:style="${iterStat.index > 0} ? 'margin-left: 5px;' : ''"></a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
