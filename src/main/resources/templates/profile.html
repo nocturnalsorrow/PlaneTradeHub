@@ -22,6 +22,54 @@
     </ul>
 </div>
 
+<div class="container">
+    <div class="row">
+        <strong><span>Name: </span></strong><span th:text="${user.name}"> </span>
+        <strong><span>Phone number: </span></strong><span th:text="${user.phone}"> </span>
+        <strong><span>Email: </span></strong><span th:text="${user.email}"> </span>
+        <h4 class="front-weight-bold blue-text">
+            <button type="button" class="btn btn-primary form-group mt-2" data-bs-toggle="modal"
+                    data-bs-target="#profileEditModal">
+                <span>Edit</span>
+            </button>
+        </h4>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form th:action="@{/profile/edit}" th:method="POST">
+                        <div class="form-group">
+                            <label><span>Username: </span></label>
+                            <input name="username" type="text" th:field="${user.name}" th:value="${user.name}"
+                                   class="form-control" pattern="[A-Z][a-z]*(([,.] |[ '-])[A-Za-z][a-z]*)*(\.?)"
+                                   required="required">
+                        </div>
+                        <div class="form-group">
+                            <label><span>Phone number: </span></label>
+                            <input name="username" type="text" th:field="${user.phone}" th:value="${user.phone}"
+                                   class="form-control" pattern="^\+[0-9]{3}\s\((\d+)\)-\d{3}-\d{2}-\d{2}" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label><span>Password: </span></label>
+                            <input name="password" type="password" required="required" th:field="${user.password}"
+                                   class="form-control"/>
+                        </div>
+                        <div class="form-group mt-2">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 
 </body>

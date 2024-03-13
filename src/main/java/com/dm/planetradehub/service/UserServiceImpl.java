@@ -48,6 +48,7 @@ public class UserServiceImpl implements UserService{
     public User updateUser(User user, Authentication authentication) {
         User oldUser = userRepository.getUserByEmail(authentication.getName());
         oldUser.setName(user.getName());
+        oldUser.setPhone(user.getPhone());
         oldUser.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         return userRepository.save(oldUser);
     }

@@ -2,6 +2,7 @@ package com.dm.planetradehub.controller;
 
 import com.dm.planetradehub.entity.Advertisement;
 import com.dm.planetradehub.entity.Aircraft;
+import com.dm.planetradehub.entity.User;
 import com.dm.planetradehub.service.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.security.core.Authentication;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +21,7 @@ import java.util.stream.IntStream;
 
 @Controller
 public class ProfileController {
+    private final UserService userService;
     private final AdvertisementService advertisementService;
     private final TypeService typeService;
     private final ManufacturerService manufacturerService;
@@ -26,7 +29,8 @@ public class ProfileController {
     private final AircraftService aircraftService;
 
 
-    public ProfileController(AdvertisementService advertisementService, TypeService typeService, ManufacturerService manufacturerService, ModelService modelService, AircraftService aircraftService) {
+    public ProfileController(UserService userService, AdvertisementService advertisementService, TypeService typeService, ManufacturerService manufacturerService, ModelService modelService, AircraftService aircraftService) {
+        this.userService = userService;
         this.advertisementService = advertisementService;
         this.typeService = typeService;
         this.manufacturerService = manufacturerService;
@@ -35,8 +39,17 @@ public class ProfileController {
     }
 
     @GetMapping("/profile")
-    public String profile(){
+    public String getProfile(Authentication authentication, Model model){
+
+        model.addAttribute("user", userService.getUserByEmail(authentication.getName()));
         return "profile";
+    }
+
+    @PostMapping("/profile/edit")
+    public String edit(@ModelAttribute User updatedUser, Authentication authentication){
+        userService.updateUser(updatedUser, authentication);
+
+        return "redirect:/profile";
     }
 
     @GetMapping("/myAdvertisements")

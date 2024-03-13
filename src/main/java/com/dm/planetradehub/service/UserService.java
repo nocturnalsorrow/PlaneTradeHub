@@ -16,7 +16,7 @@ public interface UserService {
     User signUpUser(User user);
 
     User saveUser(User user);
-    public User updateUser(User user, Authentication authentication);
+    User updateUser(User user, Authentication authentication);
 
     void deleteUserById(Long id);
     void deleteUserByEmail(String email);
