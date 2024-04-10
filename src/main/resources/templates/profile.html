@@ -6,71 +6,93 @@
     <title>Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-            crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        /* Custom styles */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .modal-content {
+            background-color: #f8f9fa;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
 <header th:replace="~{/fragments/header :: header}"></header>
 
-<div class="container">
+<div class="container mt-3">
     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a th:href="@{/myAdvertisements}" class="nav-link px-2">My Advertisements</a></li>
-        <li><a th:href="@{/advertisement}" class="nav-link px-2">Create advertisement</a></li>
+        <li><a th:href="@{/myAdvertisements}" class="btn btn-primary btn-lg me-2">My Advertisements</a></li>
+        <li><a th:href="@{/advertisement}" class="btn btn-success btn-lg">Create advertisement</a></li>
     </ul>
 </div>
 
-<div class="container">
+
+<div class="container mt-5">
     <div class="row">
-        <strong><span>Name: </span></strong><span th:text="${user.name}"> </span>
-        <strong><span>Phone number: </span></strong><span th:text="${user.phone}"> </span>
-        <strong><span>Email: </span></strong><span th:text="${user.email}"> </span>
-        <h4 class="front-weight-bold blue-text">
-            <button type="button" class="btn btn-primary form-group mt-2" data-bs-toggle="modal"
-                    data-bs-target="#profileEditModal">
-                <span>Edit</span>
-            </button>
-        </h4>
+        <div class="col-md-6 offset-md-3">
+            <strong><span>Name: </span></strong><span th:text="${user.name}"> </span><br>
+            <strong><span>Phone number: </span></strong><span th:text="${user.phone}"> </span><br>
+            <strong><span>Email: </span></strong><span th:text="${user.email}"> </span><br>
+            <h4 class="font-weight-bold text-primary mt-4">
+                <button type="button" class="btn btn-primary form-group mt-2" data-bs-toggle="modal"
+                        data-bs-target="#profileEditModal">
+                    <span>Edit</span>
+                </button>
+            </h4>
+        </div>
     </div>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form th:action="@{/profile/edit}" th:method="POST">
-                        <div class="form-group">
-                            <label><span>Username: </span></label>
-                            <input name="username" type="text" th:field="${user.name}" th:value="${user.name}"
-                                   class="form-control" pattern="[A-Z][a-z]*(([,.] |[ '-])[A-Za-z][a-z]*)*(\.?)"
-                                   required="required">
-                        </div>
-                        <div class="form-group">
-                            <label><span>Phone number: </span></label>
-                            <input name="username" type="text" th:field="${user.phone}" th:value="${user.phone}"
-                                   class="form-control" pattern="^\+[0-9]{3}\s\((\d+)\)-\d{3}-\d{2}-\d{2}" required="required">
-                        </div>
-                        <div class="form-group">
-                            <label><span>Password: </span></label>
-                            <input name="password" type="text" required="required" th:field="${user.password}"
-                                   class="form-control"/>
-                        </div>
-                        <div class="form-group mt-2">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </form>
-                </div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <form th:action="@{/profile/edit}" th:method="POST">
+                    <div class="form-group">
+                        <label><span>Username: </span></label>
+                        <input name="username" type="text" th:field="${user.name}" th:value="${user.name}"
+                               class="form-control" pattern="[A-Z][a-z]*(([,.] |[ '-])[A-Za-z][a-z]*)*(\.?)"
+                               required="required">
+                    </div>
+                    <div class="form-group">
+                        <label><span>Phone number: </span></label>
+                        <input name="username" type="text" th:field="${user.phone}" th:value="${user.phone}"
+                               class="form-control" pattern="^\+[0-9]{3}\s\((\d+)\)-\d{3}-\d{2}-\d{2}" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label><span>Password: </span></label>
+                        <input name="password" type="text" required="required" th:field="${user.password}"
+                               class="form-control"/>
+                    </div>
+                    <div class="form-group mt-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

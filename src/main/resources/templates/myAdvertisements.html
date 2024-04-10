@@ -10,53 +10,79 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        /* Custom CSS for additional styling */
+        .advertisement-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .advertisement-card h4 {
+            margin-bottom: 10px;
+        }
+
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #007bff;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 5px;
+        }
+
+        .pagination a.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 
 <header th:replace="~{/fragments/header :: header}"></header>
-<div class="container">
+<div class="container mt-3">
     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a th:href="@{/myAdvertisements}" class="nav-link px-2">My Advertisements</a></li>
-        <li><a th:href="@{/advertisement}" class="nav-link px-2">Create advertisement</a></li>
+        <li><a th:href="@{/myAdvertisements}" class="btn btn-primary btn-lg me-2">My Advertisements</a></li>
+        <li><a th:href="@{/advertisement}" class="btn btn-success btn-lg">Create advertisement</a></li>
     </ul>
 </div>
 
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="row">
-            <strong>
-                <th:block th:each="advertisement:${advertisements}">
-                    <h4 class="front-weight-bold blue-text">
-                        <a th:href="@{/{id}(id=${advertisement.id})}">
-                            <strong>
-                                <span th:text="${advertisement.aircraft.manufacturer}"/>
-                                <span th:text="${advertisement.aircraft.model}"/>
-                                <span th:text="${advertisement.aircraft.year}"/>
-                            </strong>
-                        </a>
-                    </h4>
-                    <img th:src="@{/{advertisementId}/image/{imageId}(advertisementId=${advertisement.id}, imageId=${advertisement.images[0].id})}" class="img-thumbnail" alt="Product Image"> <br/>
-                    <span th:text="Run"/> : <span th:text="${advertisement.aircraft.run}"/> <br/>
-                    <span th:text="Price"/> : <span th:text="${advertisement.price} + '$'"/> <br/>
-                    <span th:text="City"/> : <span th:text="${advertisement.city}"/> <br/>
-                    <span th:text="Placed"/> : <span th:text="${advertisement.publicationDate}"/> <br/>
-                    <a th:href="@{/myAdvertisement/{id}(id=${advertisement.id})}">
-                        <strong><span th:text="Update"></span></strong>
+            <div class="advertisement-card" th:each="advertisement:${advertisements}">
+                <h4 class="front-weight-bold blue-text">
+                    <a th:href="@{/{id}(id=${advertisement.id})}" class="text-decoration-none">
+                        <strong>
+                            <span th:text="${advertisement.aircraft.manufacturer}"/>
+                            <span th:text="${advertisement.aircraft.model}"/>
+                            <span th:text="${advertisement.aircraft.year}"/>
+                        </strong>
                     </a>
-                    <a th:href="@{/myAdvertisements/{id}(id=${advertisement.id})}">
-                        <strong><span th:text="Delete"></span></strong>
-                    </a>
-                    &nbsp;&nbsp;
-                    &nbsp;&nbsp;
-                </th:block>
-
-            </strong>
+                </h4>
+                <img th:src="@{/{advertisementId}/image/{imageId}(advertisementId=${advertisement.id}, imageId=${advertisement.images[0].id})}" class="img-thumbnail" alt="Product Image"> <br/>
+                <span th:text="Run"/> : <span th:text="${advertisement.aircraft.run}"/> <br/>
+                <span th:text="Price"/> : <span th:text="${advertisement.price} + '$'"/> <br/>
+                <span th:text="City"/> : <span th:text="${advertisement.city}"/> <br/>
+                <span th:text="Placed"/> : <span th:text="${advertisement.publicationDate}"/> <br/>
+                <a th:href="@{/myAdvertisement/{id}(id=${advertisement.id})}" class="btn btn-primary">
+                    <strong><span th:text="Update"></span></strong>
+                </a>
+                <a th:href="@{/myAdvertisements/{id}(id=${advertisement.id})}" class="btn btn-danger">
+                    <strong><span th:text="Delete"></span></strong>
+                </a>
+            </div>
             <div th:if="${advertisements.totalPages > 1}" class="pagination">
                 <div th:each="pageNumber, iterStat : ${pageNumbers}">
                     <a th:href="@{/myAdvertisements(size=${advertisements.size}, page=${pageNumber})}"
                        th:text="${pageNumber}"
-                       th:class="${pageNumber == advertisements.number + 1} ? 'active' : ''"
-                       th:style="${iterStat.index > 0} ? 'margin-left: 5px;' : ''"></a>
+                       th:class="${pageNumber == advertisements.number + 1} ? 'active' : ''"></a>
                 </div>
             </div>
         </div>

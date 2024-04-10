@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>PlaneTradeHub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -35,16 +35,16 @@
             </div>
         </th:block>
     </div>
-<!--    <div class="container">-->
-<!--        <span th:text="Models"/>-->
-<!--        <th:block th:each="model:${models}">-->
-<!--            <div class="row">-->
-<!--                <a th:href="@{/advertisements(type=${type}, manufacturer=${manufacturer}, model=${model.name})}">-->
-<!--                    <span th:text="${model.name}"/>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--        </th:block>-->
-<!--    </div>-->
+    <div class="container">
+        <span th:text="Models"/>
+        <th:block th:each="model:${models}">
+            <div class="row">
+                <a th:href="@{/advertisements(type=${type}, manufacturer=${manufacturer}, model=${model.name})}">
+                    <span th:text="${model.name}"/>
+                </a>
+            </div>
+        </th:block>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="row">
