@@ -9,19 +9,19 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a th:href="@{/}" class="nav-link px-2 text-white" th:text="Home"></a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/profile}" class="nav-link px-2 text-white" th:text="Profile"></a></li>
+                <li><a th:href="@{/}" class="nav-link px-2 text-white" th:text="#{header.label.home}"></a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/profile}" class="nav-link px-2 text-white" th:text="#{header.label.profile}"></a></li>
             </ul>
 
             <div class="text-end">
                 <div sec:authorize="!isAuthenticated()">
-                    <button type="button" class="btn btn-outline-light me-2" th:onclick="|window.location.href='@{/login}'|">Login</button>
-                    <button type="button" class="btn btn-warning" th:onclick="|window.location.href='@{/signUp}'|">Sign Up</button>
+                    <button type="button" class="btn btn-outline-light me-2" th:onclick="|window.location.href='@{/login}'|" th:text="#{header.button.login}"></button>
+                    <button type="button" class="btn btn-warning" th:onclick="|window.location.href='@{/signUp}'|" th:text="#{header.button.signUp}"></button>
                 </div>
 
                 <div sec:authorize="isAuthenticated()">
                     <form th:action="@{/logout}" method="post">
-                        <button class="btn btn-outline-light me-2" type="submit">Logout</button>
+                        <button class="btn btn-outline-light me-2" type="submit" th:text="#{header.button.logout}"></button>
                     </form>
                 </div>
             </div>

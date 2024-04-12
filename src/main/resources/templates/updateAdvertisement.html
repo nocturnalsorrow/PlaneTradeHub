@@ -22,21 +22,21 @@
             <input name="aircraft.id" type="hidden" th:value="${aircraft.id}" id="aircraft.id" class="form-control"
                    required style="width: 33%"/>
             <div class="form-group">
-                <label for="type"><strong>Type</strong></label>
+                <strong><label for="type" th:text="#{advertisement.label.type}"></label></strong>
                 <select class="form-control" th:field="${advertisement.aircraft.type}" id="type" style="width: 33%">
                     <option hidden th:value="aircraft.type" th:text="aircraft.type.name" selected></option>
                     <option th:if="type.name != aircraft.type.name" th:each="type : ${types}" th:value="${type.name}" th:text="${type.name}"></option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="manufacturer"><strong>Manufacturer</strong></label>
+                <strong><label for="manufacturer" th:text="#{advertisement.label.manufacturer}"></label></strong>
                 <select class="form-control" th:field="${advertisement.aircraft.manufacturer}" id="manufacturer" style="width: 33%">
                     <option hidden th:value="aircraft.manufacturer.name" th:text="aircraft.manufacturer.name" selected></option>
                     <option th:if="manufacturer.name != aircraft.manufacturer.name" th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.name}" th:text="${manufacturer.name}"></option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="model"><strong>model</strong></label>
+                <strong><label for="model" th:text="#{advertisement.label.model}"></label></strong>
                 <select class="form-control" th:field="${advertisement.aircraft.model}" id="model" style="width: 33%">
                     <option hidden th:value="aircraft.model" th:text="aircraft.model.name" selected></option>
                     <option th:if="model.name != aircraft.model.name" th:each="model : ${models}" th:value="${model.name}" th:text="${model.name}"></option>
@@ -44,47 +44,47 @@
 
             </div>
             <div class="form-group">
-                <label for="run"><strong>run</strong></label>
+                <strong><label for="run" th:text="#{advertisement.label.run}"></label></strong>
                 <input name="run" type="text" th:value="${aircraft.run}" th:field="${advertisement.aircraft.run}" id="run" class="form-control"
                        required style="width: 33%"/>
             </div>
             <div class="form-group">
-                <label for="year"><strong>year</strong></label>
+                <strong><label for="year" th:text="#{advertisement.label.year}"></label></strong>
                 <input name="year" type="text" th:value="${aircraft.year}" th:field="${advertisement.aircraft.year}" id="year" class="form-control"
                        required style="width: 33%"/>
             </div>
             <div class="form-group">
-                <label for="color"><strong>color</strong></label>
+                <strong><label for="color" th:text="#{advertisement.label.color}"></label></strong>
                 <input name="color" type="text" th:value="${aircraft.color}" th:field="${advertisement.aircraft.color}" id="color" class="form-control"
                        required style="width: 33%"/>
             </div>
             <div class="form-group">
-                <label for="imageFiles">Images</label>
+                <strong><label for="imageFiles" th:text="#{advertisement.label.images}"></label></strong>
                 <input type="file" class="form-control-file" id="imageFiles" name="imageFiles" accept="image/*" multiple
                        required>
             </div>
             <div class="form-group">
-                <label for="state"><strong>State</strong></label>
+                <strong><label for="state" th:text="#{advertisement.label.state}"></label></strong>
                 <input name="state" type="text" th:value="${advertisement.state}" th:field="${advertisement.state}" id="state"
                        class="form-control" required style="width: 33%"/>
             </div>
             <div class="form-group">
-                <label for="price"><strong>price</strong></label>
+                <strong><label for="price" th:text="#{advertisement.label.price}"></label></strong>
                 <input name="price" type="text" th:value="${advertisement.price}" th:field="${advertisement.price}" id="price"
                        class="form-control" required style="width: 33%"/>
             </div>
             <div class="form-group">
-                <label for="region"><strong>region</strong></label>
+                <strong><label for="region" th:text="#{advertisement.label.region}"></label></strong>
                 <input name="region" type="text" th:value="${advertisement.region}" th:field="${advertisement.region}" id="region"
                        class="form-control" required style="width: 33%"/>
             </div>
             <div class="form-group">
-                <label for="city"><strong>city</strong></label>
+                <strong><label for="city" th:text="#{advertisement.label.city}"></label></strong>
                 <input name="city" type="text" th:value="${advertisement.city}" th:field="${advertisement.city}" id="city"
                        class="form-control" required style="width: 33%"/>
             </div>
             <div class="form-group">
-                <label for="description"><strong>description</strong></label>
+                <strong><label for="description" th:text="#{advertisement.label.description}"></label></strong>
                 <input name="description" type="text" th:value="${advertisement.description}" th:field="${advertisement.description}" id="description"
                        class="form-control" required style="width: 33%"/>
             </div>
@@ -93,7 +93,7 @@
                        class="form-control" required style="width: 33%"/>
             </div>
             <div class="form-group mt-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" th:text="#{advertisement.button.submit}"></button>
             </div>
         </form>
     </div>

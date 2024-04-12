@@ -26,38 +26,37 @@
                         <strong>
                             <span th:text="${advertisement.aircraft.manufacturer}"/> <span
                                 th:text="${advertisement.aircraft.model}"/> <span th:text="${advertisement.aircraft.year}"/><br/>
-
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item" th:each="image, iterStat : ${advertisement.images}" th:class="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
                                         <img class="d-block w-100" th:src="@{/{advertisementId}/image/{imageId}(advertisementId=${advertisement.id}, imageId=${image.id})}" alt="Slide"/>
                                     </div>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" style="display: none;">
+                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev" >
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
+                                    <span class="visually-hidden"></span>
                                 </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" style="display: none;">
+                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next" >
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
+                                    <span class="visually-hidden"></span>
                                 </a>
                             </div>
 
-                            <span th:text="Run"/> : <span th:text="${advertisement.aircraft.run}"/> <br/>
-                            <span th:text="Price"/> : <span th:text="${advertisement.price} + '$'"/> <br/>
-                            <span th:text="City"/> : <span th:text="${advertisement.city}"/> <br/>
-                            <span th:text="Placed"/> : <span th:text="${advertisement.publicationDate}"/> <br/>
+                            <span th:text="#{details.span.run}"/> : <span th:text="${advertisement.aircraft.run}"/> <br/>
+                            <span th:text="#{details.span.price}"/> : <span th:text="${advertisement.price} + '$'"/> <br/>
+                            <span th:text="#{details.span.city}"/> : <span th:text="${advertisement.city}"/> <br/>
                         </strong>
+                            <span th:text="${advertisement.publicationDate}"/> <br/>
                     </div>
                     <div class="description">
-                        <span th:text="Description"/> <br/>
+                        <span th:text="#{details.span.description}"/> <br/>
                         <span th:text="${advertisement.description}"/> <br/>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 name-phone-container">
                     <div class="name-phone-text">
-                        <span th:text="Name"/> : <span th:text="${advertisement.user.name}"/> <br/>
-                        <span th:text="Phone"/> : <span th:text="${advertisement.user.phone}"/> <br/>
+                        <span th:text="#{details.span.name}"/> : <span th:text="${advertisement.user.name}"/> <br/>
+                        <span th:text="#{details.span.phone}"/> : <span th:text="${advertisement.user.phone}"/> <br/>
                     </div>
                 </div>
             </div>
@@ -66,17 +65,5 @@
 </div>
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
-
-<script>
-    $(document).ready(function() {
-        // Check if there is only one image
-        if ($('.carousel-inner .carousel-item').length === 1) {
-            // Hide the carousel controls
-            $('.carousel-control-prev').hide();
-            $('.carousel-control-next').hide();
-        }
-    });
-</script>
-
 </body>
 </html>
