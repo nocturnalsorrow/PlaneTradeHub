@@ -49,7 +49,7 @@
             <div class="row">
                 <th:block th:each="advertisement:${advertisements}">
                     <h4 class="front-weight-bold blue-text">
-                        <a th:href="@{/{id}(id=${advertisement.id})}">
+                        <a th:href="@{/advertisements/{id}(id=${advertisement.id})}">
                             <strong>
                                 <span th:text="${advertisement.aircraft.manufacturer}"/>
                                 <span th:text="${advertisement.aircraft.model}"/>

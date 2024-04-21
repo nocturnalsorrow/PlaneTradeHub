@@ -105,7 +105,7 @@ public class AdvertisementController {
         return "advertisements";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/advertisements/{id}")
     public String details(@PathVariable("id") Long id, Model model) {
         model.addAttribute("advertisement", advertisementService.getAdvertisementById(id));
 

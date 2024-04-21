@@ -25,7 +25,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/login", "/login-error", "/signUp", "/error",
                                          "/{advertisementId}/image/{imageId}", "/advertisements",
-                                         "/{id}", "css/**")
+                                         "/advertisements/{id}", "css/**")
                         .permitAll()
                         .requestMatchers("/advertisement")
                         .hasAnyAuthority("USER", "ADMIN")
