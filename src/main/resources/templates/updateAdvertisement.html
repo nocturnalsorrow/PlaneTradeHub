@@ -22,26 +22,26 @@
             <input name="aircraft.id" type="hidden" th:value="${aircraft.id}" id="aircraft.id" class="form-control"
                    required style="width: 33%"/>
             <div class="form-group">
-                <strong><label for="type" th:text="#{advertisement.label.type}"></label></strong>
-                <select class="form-control" th:field="${advertisement.aircraft.type}" id="type" style="width: 33%">
+                <label for="type"><strong th:text="#{advertisement.label.type}"/></label>
+                <select class="form-control" th:field="${aircraft.type}" id="type" style="width: 33%" required>
                     <option hidden th:value="aircraft.type" th:text="aircraft.type.name" selected></option>
-                    <option th:if="type.name != aircraft.type.name" th:each="type : ${types}" th:value="${type.name}" th:text="${type.name}"></option>
+                    <option th:each="type : ${types}" th:value="${type.name}" th:text="${type.name}"></option>
                 </select>
             </div>
             <div class="form-group">
-                <strong><label for="manufacturer" th:text="#{advertisement.label.manufacturer}"></label></strong>
-                <select class="form-control" th:field="${advertisement.aircraft.manufacturer}" id="manufacturer" style="width: 33%">
+                <label for="manufacturer"><strong th:text="#{advertisement.label.manufacturer}"/></label>
+                <select class="form-control" th:field="${aircraft.manufacturer}" id="manufacturer" style="width: 33%"
+                        required>
                     <option hidden th:value="aircraft.manufacturer.name" th:text="aircraft.manufacturer.name" selected></option>
-                    <option th:if="manufacturer.name != aircraft.manufacturer.name" th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.name}" th:text="${manufacturer.name}"></option>
+                    <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.name}" th:text="${manufacturer.name}" th:attr="data-type-id=${manufacturer.typeId}"></option>
                 </select>
             </div>
             <div class="form-group">
-                <strong><label for="model" th:text="#{advertisement.label.model}"></label></strong>
-                <select class="form-control" th:field="${advertisement.aircraft.model}" id="model" style="width: 33%">
+                <label for="model"><strong th:text="#{advertisement.label.model}"/></label>
+                <select class="form-control" th:field="${aircraft.model}" id="model" style="width: 33%" required>
                     <option hidden th:value="aircraft.model" th:text="aircraft.model.name" selected></option>
-                    <option th:if="model.name != aircraft.model.name" th:each="model : ${models}" th:value="${model.name}" th:text="${model.name}"></option>
+                    <option th:each="model : ${models}" th:value="${model.name}" th:text="${model.name}" th:attr="data-manufacturer-id=${model.manufacturerId}"></option>
                 </select>
-
             </div>
             <div class="form-group">
                 <strong><label for="run" th:text="#{advertisement.label.run}"></label></strong>
@@ -116,6 +116,43 @@
 
 <footer th:replace="~{/fragments/footer :: footer}"></footer>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const typeSelect = document.getElementById('type');
+        const manufacturerSelect = document.getElementById('manufacturer');
+        const modelSelect = document.getElementById('model');
+
+        // Функція, яка оновлює список виробників при зміні типу
+        function updateManufacturers() {
+            const selectedType = typeSelect.value;
+            Array.from(manufacturerSelect.options).forEach(option => {
+                option.hidden = option.getAttribute('data-type-id') !== selectedType;
+            });
+            // Очищаємо вибір моделі
+            modelSelect.value = '';
+            // Оновлюємо список моделей
+            updateModels();
+        }
+
+        // Функція, яка оновлює список моделей при зміні виробника
+        function updateModels() {
+            const selectedManufacturer = manufacturerSelect.value;
+            Array.from(modelSelect.options).forEach(option => {
+                option.hidden = option.getAttribute('data-manufacturer-id') !== selectedManufacturer;
+            });
+        }
+
+        // Слухач події для зміни типу літака
+        typeSelect.addEventListener('change', updateManufacturers);
+
+        // Слухач події для зміни виробника
+        manufacturerSelect.addEventListener('change', updateModels);
+
+        // Перша ініціалізація
+        updateManufacturers();
+    });
+
+</script>
 </html>
 
 
