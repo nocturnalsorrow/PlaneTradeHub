@@ -27,7 +27,7 @@
         <div class="row">
             <div class="advertisement-card" th:each="advertisement:${advertisements}">
                 <h4 class="front-weight-bold blue-text">
-                    <a th:href="@{/{id}(id=${advertisement.id})}" class="text-decoration-none">
+                    <a th:href="@{/advertisements/{id}(id=${advertisement.id})}" class="text-decoration-none">
                         <strong>
                             <span th:text="${advertisement.aircraft.manufacturer}"/>
                             <span th:text="${advertisement.aircraft.model}"/>

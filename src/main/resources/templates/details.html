@@ -42,9 +42,11 @@
                                 </a>
                             </div>
 
-                            <span th:text="#{details.span.run}"/> : <span th:text="${advertisement.aircraft.run}"/> <br/>
-                            <span th:text="#{details.span.price}"/> : <span th:text="${advertisement.price} + '$'"/> <br/>
-                            <span th:text="#{details.span.city}"/> : <span th:text="${advertisement.city}"/> <br/>
+                            <span th:text="#{details.span.run}"/> <span th:text="${advertisement.aircraft.run}"/> km<br/>
+                            <span th:text="#{details.span.price}"/> <span th:text="${advertisement.price} + '$'"/> <br/>
+                            <span th:text="#{details.span.year}"/> <span th:text="${advertisement.aircraft.year}"/> <br/>
+                            <span th:text="#{details.span.color}"/> <span th:text="${advertisement.aircraft.color}"/> <br/>
+                            <span th:text="#{details.span.city}"/> <span th:text="${advertisement.city}"/> <br/>
                         </strong>
                             <span th:text="${advertisement.publicationDate}"/> <br/>
                     </div>
