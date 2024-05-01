@@ -26,6 +26,7 @@
                         <strong>
                             <span th:text="${advertisement.aircraft.manufacturer}"/> <span
                                 th:text="${advertisement.aircraft.model}"/> <span th:text="${advertisement.aircraft.year}"/><br/>
+                        </strong>
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item" th:each="image, iterStat : ${advertisement.images}" th:class="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
@@ -42,12 +43,12 @@
                                 </a>
                             </div>
 
-                            <span th:text="#{details.span.run}"/> <span th:text="${advertisement.aircraft.run}"/> km<br/>
-                            <span th:text="#{details.span.price}"/> <span th:text="${advertisement.price} + '$'"/> <br/>
-                            <span th:text="#{details.span.year}"/> <span th:text="${advertisement.aircraft.year}"/> <br/>
-                            <span th:text="#{details.span.color}"/> <span th:text="${advertisement.aircraft.color}"/> <br/>
-                            <span th:text="#{details.span.city}"/> <span th:text="${advertisement.city}"/> <br/>
-                        </strong>
+                        <strong><span th:text="#{details.span.run}"/></strong> <span th:text="${advertisement.aircraft.run}"/> km<br/>
+                        <strong><span th:text="#{details.span.price}"/></strong> <span th:text="${advertisement.price} + '$'"/> <br/>
+                        <strong><span th:text="#{details.span.year}"/></strong> <span th:text="${advertisement.aircraft.year}"/> <br/>
+                        <strong><span th:text="#{details.span.color}"/></strong> <span th:text="${advertisement.aircraft.color}"/> <br/>
+                        <strong><span th:text="#{details.span.city}"/></strong> <span th:text="${advertisement.city}"/> <br/>
+
                             <span th:text="${advertisement.publicationDate}"/> <br/>
                     </div>
                     <div class="description">

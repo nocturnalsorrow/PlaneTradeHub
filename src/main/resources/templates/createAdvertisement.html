@@ -72,9 +72,9 @@
         <div class="form-group">
             <label for="state"><strong th:text="#{advertisement.label.state}"/></label>
             <select class="form-control" th:field="${advertisement.state}" id="state" style="width: 33%" required>
-                <option th:value="new" th:text="#{state.label.new}"></option>
-                <option th:value="used" th:text="#{state.label.used}"></option>
-                <option th:value="immobile" th:text="#{state.label.immobile}"></option>
+                <option th:value="New" th:text="#{state.label.new}"></option>
+                <option th:value="Used" th:text="#{state.label.repaired}"></option>
+                <option th:value="Immobile" th:text="#{state.label.immobile}"></option>
             </select>
         </div>
         <div class="form-group">
@@ -94,8 +94,8 @@
         </div>
         <div class="form-group">
             <label for="description"><strong th:text="#{advertisement.label.description}"></strong></label>
-            <input name="description" type="text" th:field="${advertisement.description}" id="description"
-                   class="form-control" required style="width: 33%"/>
+            <textarea name="description" rows="10" th:field="${advertisement.description}" id="description"
+                      class="form-control" required></textarea>
         </div>
         <div class="form-group mt-2">
             <button type="submit" class="btn btn-primary" th:text="#{advertisement.button.submit}"/>
