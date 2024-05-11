@@ -29,7 +29,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement, Lo
     Advertisement findAdvertisementById(Long id);
     @Query(value = "select a from Advertisement a where (a.user = :user) ORDER BY a.publicationDate desc")
     Page<Advertisement> findAdvertisementsByUser(User user, Pageable pageable);
-
+    @Query(value = "select a from Advertisement a ORDER BY a.publicationDate desc")
     Page<Advertisement> findAll(Pageable pageable);
 
 }

@@ -87,7 +87,6 @@ public class ProfileController {
 
     @PostMapping("/myAdvertisement")
     public String updateMyAdvertisement(@ModelAttribute Advertisement advertisement,
-                                        @ModelAttribute Aircraft aircraft,
                                         @RequestParam("imageFiles") List<MultipartFile> imageFiles,
                                         Authentication authentication) throws IOException {
         advertisementService.updateAdvertisement(advertisement, imageFiles, authentication);

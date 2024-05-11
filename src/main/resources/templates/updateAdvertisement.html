@@ -10,6 +10,16 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .row {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
 <header th:replace="~{/fragments/header :: header}"></header>
@@ -21,28 +31,12 @@
                    required style="width: 33%"/>
             <input name="aircraft.id" type="hidden" th:value="${aircraft.id}" id="aircraft.id" class="form-control"
                    required style="width: 33%"/>
-            <div class="form-group">
-                <label for="type"><strong th:text="#{advertisement.label.type}"/></label>
-                <select class="form-control" th:field="${aircraft.type}" id="type" style="width: 33%" required>
-                    <option hidden th:value="aircraft.type" th:text="aircraft.type.name" selected></option>
-                    <option th:each="type : ${types}" th:value="${type.name}" th:text="${type.name}"></option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="manufacturer"><strong th:text="#{advertisement.label.manufacturer}"/></label>
-                <select class="form-control" th:field="${aircraft.manufacturer}" id="manufacturer" style="width: 33%"
-                        required>
-                    <option hidden th:value="aircraft.manufacturer.name" th:text="aircraft.manufacturer.name" selected></option>
-                    <option th:each="manufacturer : ${manufacturers}" th:value="${manufacturer.name}" th:text="${manufacturer.name}" th:attr="data-type-id=${manufacturer.typeId}"></option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="model"><strong th:text="#{advertisement.label.model}"/></label>
-                <select class="form-control" th:field="${aircraft.model}" id="model" style="width: 33%" required>
-                    <option hidden th:value="aircraft.model" th:text="aircraft.model.name" selected></option>
-                    <option th:each="model : ${models}" th:value="${model.name}" th:text="${model.name}" th:attr="data-manufacturer-id=${model.manufacturerId}"></option>
-                </select>
-            </div>
+            <input name="aircraft.type" type="hidden" th:value="${advertisement.aircraft.type}" id="aircraft.type" class="form-control"
+                   required style="width: 33%"/>
+            <input name="aircraft.manufacturer" type="hidden" th:value="${advertisement.aircraft.manufacturer}" id="aircraft.manufacturer" class="form-control"
+                   required style="width: 33%"/>
+            <input name="aircraft.model" type="hidden" th:value="${advertisement.aircraft.model}" id="aircraft.model" class="form-control"
+                   required style="width: 33%"/>
             <div class="form-group">
                 <strong><label for="run" th:text="#{advertisement.label.run}"></label></strong>
                 <input name="run" type="text" th:value="${aircraft.run}" th:field="${advertisement.aircraft.run}" id="run" class="form-control"
@@ -50,37 +44,35 @@
             </div>
             <div class="form-group">
                 <label for="year"><strong th:text="#{advertisement.label.year}"/></label>
-                <select class="form-control" th:field="${aircraft.year}" id="year" style="width: 33%">
+                <select class="form-control" th:field="${advertisement.aircraft.year}" id="year" style="width: 33%">
                     <option hidden th:value="${aircraft.year}" th:text="${aircraft.year}" selected></option>
                     <option th:each="year : ${#numbers.sequence(1900, 2024)}" th:value="${year}" th:text="${year}"></option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="color"><strong th:text="#{advertisement.label.color}"/></label>
-                <select class="form-control" th:field="${aircraft.color}" id="color" style="width: 33%">
-                    <option hidden th:value="aircraft.color" selected></option>
-                    <option th:value="white" th:text="#{color.label.white}"></option>
-                    <option th:value="black" th:text="#{color.label.black}"></option>
-                    <option th:value="green" th:text="#{color.label.green}"></option>
-                    <option th:value="orange" th:text="#{color.label.orange}"></option>
-                    <option th:value="blue" th:text="#{color.label.blue}"></option>
-                    <option th:value="red" th:text="#{color.label.red}"></option>
-                    <option th:value="gray" th:text="#{color.label.gray}"></option>
-                    <option th:value="yellow" th:text="#{color.label.yellow}"></option>
+                <select class="form-control" th:field="${advertisement.aircraft.color}" id="color" style="width: 33%">
+                    <option value="white" th:text="#{color.label.white}"></option>
+                    <option value="black" th:text="#{color.label.black}"></option>
+                    <option value="green" th:text="#{color.label.green}"></option>
+                    <option value="orange" th:text="#{color.label.orange}"></option>
+                    <option value="blue" th:text="#{color.label.blue}"></option>
+                    <option value="red" th:text="#{color.label.red}"></option>
+                    <option value="gray" th:text="#{color.label.gray}"></option>
+                    <option value="yellow" th:text="#{color.label.yellow}"></option>
                 </select>
             </div>
             <div class="form-group">
                 <strong><label for="imageFiles" th:text="#{advertisement.label.images}"></label></strong>
-                <input type="file" class="form-control-file" id="imageFiles" name="imageFiles" accept="image/*" multiple
-                       required>
+                <input type="file" class="form-control-file" id="imageFiles" name="imageFiles" accept="image/*" multiple>
+                <h6 th:text="#{advertisement.note.images}"></h6>
             </div>
             <div class="form-group">
                 <label for="state"><strong th:text="#{advertisement.label.state}"/></label>
                 <select class="form-control" th:field="${advertisement.state}" id="state" style="width: 33%" required>
-                    <option hidden th:value="${advertisement.state}" selected></option>
-                    <option th:value="New" th:text="#{state.label.new}"></option>
-                    <option th:value="Repaired" th:text="#{state.label.repaired}"></option>
-                    <option th:value="Immobile" th:text="#{state.label.immobile}"></option>
+                    <option value="New" th:text="#{state.label.new}"></option>
+                    <option value="Repaired" th:text="#{state.label.repaired}"></option>
+                    <option value="Immobile" th:text="#{state.label.immobile}"></option>
                 </select>
             </div>
             <div class="form-group">
@@ -151,7 +143,38 @@
         // Перша ініціалізація
         updateManufacturers();
     });
-
+</script>
+<script>
+    // Отримуємо елемент випадаючого списку
+    var selectElement = document.getElementById("state");
+    // Отримуємо значення стану з моделі Thymeleaf
+    var defaultState = "${advertisement.state}";
+    // Проходимося по опціям та перевіряємо, чи збігається значення стану
+    for (var i = 0; i < selectElement.options.length; i++) {
+        if (selectElement.options[i].value === defaultState) {
+            // Якщо збігається, встановлюємо вибір за замовчуванням
+            selectElement.selectedIndex = i;
+            // Встановлюємо правильний текст для вибраної опції
+            selectElement.options[i].text = document.querySelector('[value="' + defaultState + '"]').innerText;
+            break;
+        }
+    }
+</script>
+<script>
+    // Отримуємо елемент випадаючого списку
+    var selectElement = document.getElementById("color");
+    // Отримуємо значення кольору з моделі Thymeleaf
+    var defaultColor = "${advertisement.aircraft.color}";
+    // Проходимося по опціям та перевіряємо, чи збігається значення кольору
+    for (var i = 0; i < selectElement.options.length; i++) {
+        if (selectElement.options[i].value === defaultColor) {
+            // Якщо збігається, встановлюємо вибір за замовчуванням
+            selectElement.selectedIndex = i;
+            // Встановлюємо правильний текст для вибраної опції
+            selectElement.options[i].text = document.querySelector('[value="' + defaultColor + '"]').innerText;
+            break;
+        }
+    }
 </script>
 </html>
 

@@ -69,7 +69,7 @@
                         </div>
                         <div th:if="${advertisements.totalPages > 1}" class="pagination">
                             <div th:each="pageNumber, iterStat : ${pageNumbers}">
-                                <a th:href="@{/advertisements(type=${type}, manufacturer=${manufacturer}, model=${model}, size=${advertisements.size}, page=${pageNumber})}"
+                                <a th:href="@{/(type=${type}, manufacturer=${manufacturer}, size=${advertisements.size}, page=${pageNumber})}"
                                    th:text="${pageNumber}"
                                    th:class="${pageNumber == advertisements.number + 1} ? 'active' : ''"></a>
                             </div>
