@@ -11,6 +11,7 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a th:href="@{/}" class="nav-link px-2 text-white" th:text="#{header.label.home}"></a></li>
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/profile}" class="nav-link px-2 text-white" th:text="#{header.label.profile}"></a></li>
+                <li sec:authorize="hasAuthority('ADMIN')"   ><a th:href="@{/aircrafts}" class="nav-link px-2 text-white" th:text="#{header.label.aircrafts}"></a></li>
             </ul>
 
             <div class="text-end">

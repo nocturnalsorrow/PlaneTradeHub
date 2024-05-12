@@ -1,8 +1,6 @@
 package com.dm.planetradehub.controller;
 
-import com.dm.planetradehub.entity.Advertisement;
-import com.dm.planetradehub.entity.Aircraft;
-import com.dm.planetradehub.entity.User;
+import com.dm.planetradehub.entity.*;
 import com.dm.planetradehub.service.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.security.core.Authentication;
 
 import java.io.IOException;
 import java.util.List;
@@ -118,5 +115,52 @@ public class ProfileController {
             throws IOException {
         advertisementService.addAdvertisement(advertisement, aircraft, imageFiles, authentication);
         return "redirect:/myAdvertisements";
+    }
+
+    @GetMapping("/aircrafts")
+    public String getAircrafts(Model model){
+        model.addAttribute("types", typeService.getAllTypes());
+        model.addAttribute("type", new Type());
+        model.addAttribute("manufacturers", manufacturerService.getAllManufacturers());
+        model.addAttribute("manufacturer", new Manufacturer());
+        model.addAttribute("models", modelService.getAllModels());
+        model.addAttribute("model", new com.dm.planetradehub.entity.Model());
+        return "aircrafts";
+    }
+
+    @PostMapping("/aircrafts/type")
+    public String addNewType(@ModelAttribute Type type){
+        typeService.saveType(type);
+        return "redirect:/aircrafts";
+    }
+
+    @PostMapping("/aircrafts/manufacturer")
+    public String addNewManufacturer(@ModelAttribute Manufacturer manufacturer){
+        manufacturerService.saveManufacturer(manufacturer);
+        return "redirect:/aircrafts";
+    }
+
+    @PostMapping("/aircrafts/model")
+    public String addNewModel(@ModelAttribute com.dm.planetradehub.entity.Model model){
+        modelService.saveModel(model);
+        return "redirect:/aircrafts";
+    }
+
+    @GetMapping("/aircrafts/type/{id}")
+    public String deleteNewType(@PathVariable Long id){
+        typeService.deleteTypeById(id);
+        return "redirect:/aircrafts";
+    }
+
+    @GetMapping("/aircrafts/manufacturer/{id}")
+    public String deleteNewManufacturer(@PathVariable Long id){
+        manufacturerService.deleteManufacturerById(id);
+        return "redirect:/aircrafts";
+    }
+
+    @GetMapping("/aircrafts/model/{id}")
+    public String deleteNewModel(@PathVariable Long id){
+        modelService.deleteModelById(id);
+        return "redirect:/aircrafts";
     }
 }
