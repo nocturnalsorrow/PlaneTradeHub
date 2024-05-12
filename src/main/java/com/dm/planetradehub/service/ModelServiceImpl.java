@@ -39,4 +39,9 @@ public class ModelServiceImpl implements ModelService{
         else
             return modelRepository.getModelsByManufacturerId(manufacturerService.getManufacturerByName(manufacturer).getId());
     }
+
+    @Override
+    public void deleteModelById(Long id) {
+        modelRepository.deleteById(id);
+    }
 }

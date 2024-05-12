@@ -13,4 +13,6 @@ public interface ManufacturerService {
     Manufacturer getManufacturerByName(String name);
 
     Manufacturer saveManufacturer(Manufacturer manufacturer);
+
+    void deleteManufacturerById(Long id);
 }

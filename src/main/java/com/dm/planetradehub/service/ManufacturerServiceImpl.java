@@ -33,4 +33,9 @@ public class ManufacturerServiceImpl implements ManufacturerService{
     public Manufacturer saveManufacturer(Manufacturer manufacturer) {
         return manufacturerRepository.save(manufacturer);
     }
+
+    @Override
+    public void deleteManufacturerById(Long id) {
+        manufacturerRepository.deleteById(id);
+    }
 }

@@ -12,4 +12,6 @@ public interface ModelService {
     Model saveModel(Model model);
 
     List<Model> getModelsByManufacturer(String manufacturer);
+
+    void deleteModelById(Long id);
 }
